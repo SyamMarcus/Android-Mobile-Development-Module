@@ -8,14 +8,15 @@ import android.view.View;
 import android.widget.Button;
 
 public class CreateListingActivity extends AppCompatActivity {
-    private Button button;
+    private Button openMainButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_listing);
 
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        openMainButton = (Button) findViewById(R.id.openMainButton);
+        openMainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMain();

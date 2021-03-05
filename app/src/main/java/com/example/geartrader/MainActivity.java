@@ -9,24 +9,24 @@ import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
-    private Button button2;
+    private Button openRegisterButton;
+    private Button openListingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        openRegisterButton = (Button) findViewById(R.id.openRegisterButton);
+        openRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openRegister();
             }
         });
 
-        button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
+        openListingButton = (Button) findViewById(R.id.openListingButton);
+        openListingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openCreateListing();
