@@ -24,4 +24,17 @@
         android:layout_marginTop="40dp"
         android:text="Return to main Activity" />
 
+
+    <Button
+        android:id="@+id/createUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="114dp"
+        android:layout_marginLeft="114dp"
+        android:layout_marginTop="245dp"
+        android:text="Create User" />
+
+
 </RelativeLayout>
