@@ -36,12 +36,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean createUser() {
+    public boolean createUser(RegisterActivity registerActivity) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(NAME, "Adam");
-        cv.put(PASSWORD, "pass");
+        cv.put(NAME, registerActivity.getUsername());
+        cv.put(PASSWORD, registerActivity.getPassword());
 
 
         db.insert(TABLE_NAME, null, cv);
