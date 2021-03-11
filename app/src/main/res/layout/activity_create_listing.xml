@@ -24,6 +24,72 @@
         android:layout_marginTop="40dp"
         android:text="Return to main Activity" />
 
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="122dp"
+        android:layout_marginLeft="122dp"
+        android:layout_marginTop="116dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="Enter Listing Title:" />
+
+    <TextView
+        android:id="@+id/summaryTextView"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="186dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginRight="120dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="Enter Summary:" />
+
+    <EditText
+        android:id="@+id/titleEditTextView"
+        android:hint="title"
+        android:layout_width="168dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="137dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginRight="121dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:gravity="center"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/summaryEditTextView"
+        android:layout_width="168dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="206dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginRight="120dp"
+        android:ems="8"
+        android:gravity="center"
+        android:hint="summary"
+        android:inputType="textPassword"
+        android:textSize="15sp" />
+
     <Button
         android:id="@+id/createListing"
         android:layout_width="wrap_content"
