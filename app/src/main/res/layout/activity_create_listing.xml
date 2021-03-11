@@ -87,7 +87,7 @@
         android:ems="8"
         android:gravity="center"
         android:hint="summary"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:textSize="15sp" />
 
     <Button

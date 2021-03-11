@@ -42,7 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG,"createUser button clicked");
                 DbHelper dbHelper = new DbHelper(RegisterActivity.this);
-                dbHelper.createUser(RegisterActivity.this);
+                if (validateCreateUser()) {
+                    dbHelper.createUser(RegisterActivity.this);
+                }
                 Username.setText("");
                 Pass.setText("");
                 Email.setText("");
@@ -56,9 +58,25 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public String getUsername() { return Username.getText().toString(); }
-
     public String getPassword() { return Pass.getText().toString(); }
-
     public String getEmail() { return Email.getText().toString(); }
 
+    public boolean validateCreateUser() {
+        String username = Username.getText().toString();
+        String pass = Pass.getText().toString();
+        String email = Email.getText().toString();
+        if (username.length() < 4 || username.length() > 16) {
+            Toast.makeText(RegisterActivity.this, "Incorrect Username Details", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (pass.length() < 6 || pass.length() > 16)  {
+            Toast.makeText(RegisterActivity.this, "Incorrect Password Details", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (email.length() < 6 || email.length() > 36 || !email.contains("@")) {
+            Toast.makeText(RegisterActivity.this, "Incorrect Email Address Details", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
 }

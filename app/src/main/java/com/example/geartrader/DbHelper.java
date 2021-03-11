@@ -60,13 +60,6 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        if(!validateCreateUser(registerActivity.getUsername(),
-                registerActivity.getPassword(), registerActivity.getEmail())) {
-            Toast.makeText(registerActivity, "Incorrect User Details" , Toast.LENGTH_SHORT).show();
-            db.close();
-            return false;
-        }
-
         cv.put(NAME, registerActivity.getUsername());
         cv.put(PASSWORD, registerActivity.getPassword());
         cv.put(EMAIL, registerActivity.getEmail());
@@ -82,28 +75,10 @@ public class DbHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean validateCreateUser(String username, String password, String email) {
-        if (username.length() < 4 || username.length() > 16) {
-            return false;
-        }
-        if (password.length() < 6 || password.length() > 16)  {
-            return false;
-        }
-        if (email.length() < 6 || email.length() > 36 || !email.contains("@")) {
-            return false;
-        }
-        return true;
-    }
 
     public boolean createListing(CreateListingActivity createListingActivity) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-
-        if(!validateCreateListing(createListingActivity.getListingTitle(), createListingActivity.getSummary())) {
-            Toast.makeText(createListingActivity, "Incorrect Listing Details" , Toast.LENGTH_SHORT).show();
-            db.close();
-            return false;
-        }
 
         cv.put(TITLE, createListingActivity.getListingTitle());
         cv.put(SUMMARY, createListingActivity.getSummary());
@@ -116,16 +91,6 @@ public class DbHelper extends SQLiteOpenHelper {
         }
 
         db.close();
-        return true;
-    }
-
-    private boolean validateCreateListing(String listingTitle, String summary) {
-        if (listingTitle.length() < 4 || listingTitle.length() > 16) {
-            return false;
-        }
-        if (summary.length() < 6 || summary.length() > 100)  {
-            return false;
-        }
         return true;
     }
 }
