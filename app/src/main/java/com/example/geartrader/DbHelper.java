@@ -12,13 +12,24 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final String TABLE_NAME = "users";
+    private static final String USERS_TABLE = "users";
     private static final String ID = "ID";
     private static final String NAME = "NAME";
     private static final String PASSWORD = "PASSWORD";
     private static final String EMAIL = "EMAIL";
-    private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+NAME+" VARCHAR(255) ,"+PASSWORD+" VARCHAR(225) ,"+EMAIL+" VARCHAR(255));";
-    private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
+    private static final String CREATE_USERS_TABLE = "CREATE TABLE "+USERS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+NAME+" VARCHAR(255) ,"+PASSWORD+" VARCHAR(225) ,"+EMAIL+" VARCHAR(255));";
+
+    private static final String LISTINGS_TABLE = "listings";
+    private static final String TITLE = "TITLE";
+    private static final String ALL_TEXT = "ALL_TEXT";
+    private static final String SUMMARY = "SUMMARY";
+    private static final String DATE_CREATED = "DATE_CREATED";
+    private static final String IMAGE_URL = "IMAGE_URL";
+    private static final String ACTIVE = "ACTIVE";
+    private static final String AUTHOR_ID = "AUTHOR_ID";
+    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE_URL+" VARCHAR(2048) , "+ACTIVE+" BOOL, "+AUTHOR_ID+" INT);";
+
+    private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+ USERS_TABLE;
     private static final String TAG = "db";
 
     public DbHelper(@Nullable Context context) {
@@ -28,7 +39,8 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.execSQL(CREATE_TABLE);
+            db.execSQL(CREATE_USERS_TABLE);
+            db.execSQL(CREATE_LISTINGS_TABLE);
         } catch (SQLException e) {
             Log.e(TAG,"Failed to create database table");
         }
@@ -60,7 +72,7 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(EMAIL, registerActivity.getEmail());
 
         try {
-            db.insert(TABLE_NAME, null, cv);
+            db.insert(USERS_TABLE, null, cv);
             Toast.makeText(registerActivity, "Created new user", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(registerActivity, "Failed to create new user" , Toast.LENGTH_SHORT).show();
@@ -85,5 +97,19 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return true;
     }
+
+    public boolean createListing() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(TITLE, "First Listing post");
+        cv.put(SUMMARY, "Summary about the first listing post");
+
+
+        db.insert(LISTINGS_TABLE, null, cv);
+        db.close();
+        return true;
+    }
+
 }
 

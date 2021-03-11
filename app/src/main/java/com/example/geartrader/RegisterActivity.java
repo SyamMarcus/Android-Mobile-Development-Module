@@ -19,10 +19,6 @@ public class RegisterActivity extends AppCompatActivity {
     private Button createUser;
     private static final String TAG = "3";
 
-    public static void message(Context context, String message) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
