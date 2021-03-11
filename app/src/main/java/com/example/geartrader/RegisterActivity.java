@@ -47,6 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.d(TAG,"createUser button clicked");
                 DbHelper dbHelper = new DbHelper(RegisterActivity.this);
                 dbHelper.createUser(RegisterActivity.this);
+                Username.setText("");
+                Pass.setText("");
+                Email.setText("");
             }
         });
     }
@@ -56,21 +59,10 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String getUsername() {
-        String username = Username.getText().toString();
-        Username.setText("");
-        return username;
-    }
+    public String getUsername() { return Username.getText().toString(); }
 
-    public String getPassword() {
-        String pass = Pass.getText().toString();
-        Pass.setText("");
-        return pass;
-    }
+    public String getPassword() { return Pass.getText().toString(); }
 
-    public String getEmail() {
-        String email = Email.getText().toString();
-        Email.setText("");
-        return email;
-    }
+    public String getEmail() { return Email.getText().toString(); }
+
 }
