@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
+    // Strings to be used in database queries
+    // Strings for users Table
     private static final String USERS_TABLE = "users";
     private static final String ID = "ID";
     private static final String NAME = "NAME";
@@ -19,6 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String EMAIL = "EMAIL";
     private static final String CREATE_USERS_TABLE = "CREATE TABLE "+USERS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+NAME+" VARCHAR(255) ,"+PASSWORD+" VARCHAR(225) ,"+EMAIL+" VARCHAR(255));";
 
+    // Strings for listings Table
     private static final String LISTINGS_TABLE = "listings";
     private static final String TITLE = "TITLE";
     private static final String ALL_TEXT = "ALL_TEXT";
@@ -56,10 +59,12 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Method for creating a new user in the users table
     public boolean createUser(RegisterActivity registerActivity) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        // Get query data from RegisterActivity
         cv.put(NAME, registerActivity.getUsername());
         cv.put(PASSWORD, registerActivity.getPassword());
         cv.put(EMAIL, registerActivity.getEmail());
@@ -75,11 +80,12 @@ public class DbHelper extends SQLiteOpenHelper {
         return true;
     }
 
-
+    // Method for creating a new listing in the listings table
     public boolean createListing(CreateListingActivity createListingActivity) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        // Get query data from CreateListingActivity
         cv.put(TITLE, createListingActivity.getListingTitle());
         cv.put(SUMMARY, createListingActivity.getSummary());
 

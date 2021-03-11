@@ -9,6 +9,7 @@ import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
+    // Create variables
     private Button openRegisterButton;
     private Button openListingButton;
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Create new button object for the openRegister function
         openRegisterButton = (Button) findViewById(R.id.openRegisterButton);
         openRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Create new button object for the openListing function
         openListingButton = (Button) findViewById(R.id.openListingButton);
         openListingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Create new intent to start Register Activity
     public void openRegister() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 
+    // Create new intent to start CreateListing Activity
     public void openCreateListing() {
         Intent intent = new Intent(this, CreateListingActivity.class);
         startActivity(intent);

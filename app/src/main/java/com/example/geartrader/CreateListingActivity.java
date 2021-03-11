@@ -11,19 +11,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class CreateListingActivity extends AppCompatActivity {
+    // Create variables
     EditText Title, Summary;
     private Button openMainButton;
     private Button createListing;
     private static final String TAG = "3";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_listing);
+
+        // Set variables
         Title = (EditText) findViewById(R.id.titleEditTextView);
         Summary = (EditText) findViewById(R.id.summaryEditTextView);
 
+        // Create new button object for the openMain function
         openMainButton = (Button) findViewById(R.id.openMainButton);
         openMainButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +35,7 @@ public class CreateListingActivity extends AppCompatActivity {
             }
         });
 
+        // Create new button object for the createListing function
         createListing = (Button) findViewById(R.id.createListing);
         createListing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,14 +49,17 @@ public class CreateListingActivity extends AppCompatActivity {
         });
     }
 
+    // Create new intent to start Main Activity
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    // Getter functions for createListing
     public String getListingTitle() { return Title.getText().toString(); }
     public String getSummary() { return Summary.getText().toString(); }
 
+    // Validate the strings for the createListing function
     private boolean validateCreateListing() {
         String title = Title.getText().toString();
         String summary = Summary.getText().toString();

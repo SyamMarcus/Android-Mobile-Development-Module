@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
+    // Create variables
     EditText Username, Pass, Email;
     private Button openMainButton;
     private Button createUser;
@@ -23,10 +24,13 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        // Set variables
         Username = (EditText) findViewById(R.id.userEditTextView);
         Pass = (EditText) findViewById(R.id.passEditTextView);
         Email = (EditText) findViewById(R.id.emailEditTextView);
 
+        // Create new button object for the openMain function
         openMainButton = (Button) findViewById(R.id.openMainButton);
         openMainButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        // Create new button object for the createUser function
         createUser = (Button) findViewById(R.id.createUser);
         createUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (validateCreateUser()) {
                     dbHelper.createUser(RegisterActivity.this);
                 }
+                // Reset editText boxes
                 Username.setText("");
                 Pass.setText("");
                 Email.setText("");
@@ -52,15 +58,18 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // Create new intent to start Main Activity
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    // Getter functions for createUser
     public String getUsername() { return Username.getText().toString(); }
     public String getPassword() { return Pass.getText().toString(); }
     public String getEmail() { return Email.getText().toString(); }
 
+    // Validate the strings for the createUser function
     public boolean validateCreateUser() {
         String username = Username.getText().toString();
         String pass = Pass.getText().toString();
