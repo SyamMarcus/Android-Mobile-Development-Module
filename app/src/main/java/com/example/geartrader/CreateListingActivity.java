@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class CreateListingActivity extends AppCompatActivity {
-    // Create variables
+    // Create class-member variables
     EditText Title, Summary, Price;
     private Button openMainButton;
     private Button createListing;

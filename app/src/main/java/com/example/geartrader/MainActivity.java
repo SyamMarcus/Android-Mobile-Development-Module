@@ -5,23 +5,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    // Create variables
+    // Create class-member variables
     private Button openRegisterButton;
     private Button openListingButton;
     private Button displayListingsButton;
+    private ListView listingsList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set variables
+        listingsList = findViewById(R.id.listingListView);
+
+        DbHelper dbHelper = new DbHelper(MainActivity.this);
+        displayAllListings(dbHelper);
 
         // Create new button object for the openRegister function
         openRegisterButton = (Button) findViewById(R.id.openRegisterButton);
@@ -46,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
         displayListingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DbHelper dbHelper = new DbHelper(MainActivity.this);
-                List<ListingModel> allListings = dbHelper.getAllListings();
-                Toast.makeText(MainActivity.this, allListings.toString(), Toast.LENGTH_SHORT).show();
+                displayAllListings(dbHelper);
             }
         });
     }
@@ -63,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     public void openCreateListing() {
         Intent intent = new Intent(this, CreateListingActivity.class);
         startActivity(intent);
+    }
+
+    public void displayAllListings(DbHelper dbHelper) {
+        ArrayAdapter listingsArrayAdapter = new ArrayAdapter<ListingModel>(MainActivity.this, android.R.layout.simple_list_item_1, dbHelper.getAllListings());
+        listingsList.setAdapter(listingsArrayAdapter);
     }
 
 }

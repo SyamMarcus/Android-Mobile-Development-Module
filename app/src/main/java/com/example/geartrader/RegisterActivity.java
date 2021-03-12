@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
-    // Create variables
+    // Create class-member variables
     EditText Username, Pass, Email;
     private Button openMainButton;
     private Button createUser;
