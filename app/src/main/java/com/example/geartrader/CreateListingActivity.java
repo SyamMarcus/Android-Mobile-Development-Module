@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class CreateListingActivity extends AppCompatActivity {
     // Create variables
-    EditText Title, Summary;
+    EditText Title, Summary, Price;
     private Button openMainButton;
     private Button createListing;
     private static final String TAG = "3";
@@ -25,6 +25,7 @@ public class CreateListingActivity extends AppCompatActivity {
         // Set variables
         Title = (EditText) findViewById(R.id.titleEditTextView);
         Summary = (EditText) findViewById(R.id.summaryEditTextView);
+        Price = (EditText) findViewById(R.id.priceEditTextView);
 
         // Create new button object for the openMain function
         openMainButton = (Button) findViewById(R.id.openMainButton);
@@ -44,6 +45,9 @@ public class CreateListingActivity extends AppCompatActivity {
                 DbHelper dbHelper = new DbHelper( CreateListingActivity.this);
                 if (validateCreateListing()) {
                     dbHelper.createListing(CreateListingActivity.this);
+                    Title.setText("");
+                    Summary.setText("");
+                    Price.setText("");
                 }
             }
         });
@@ -58,6 +62,7 @@ public class CreateListingActivity extends AppCompatActivity {
     // Getter functions for createListing
     public String getListingTitle() { return Title.getText().toString(); }
     public String getSummary() { return Summary.getText().toString(); }
+    public String getPrice() { return Price.getText().toString(); }
 
     // Validate the strings for the createListing function
     private boolean validateCreateListing() {
