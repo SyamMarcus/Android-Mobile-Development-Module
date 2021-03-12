@@ -2,6 +2,7 @@ package com.example.geartrader;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -9,6 +10,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -99,6 +103,38 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.close();
         return true;
+    }
+
+    // Method for getting all entries in LISTINGS_TABLE using a list of ListingModel objects
+    public List<ListingModel> getAllListings() {
+
+        // Initialise new array list to return an array of ListingModel objects
+        List<ListingModel> returnList = new ArrayList<>();
+
+        // Setup database query from readable database
+        String query = "SELECT * FROM " + LISTINGS_TABLE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // Move to first entry in Listings table and append ListingModel objects to the return list
+        // Continue moving through the Listing table until there are no more entries.
+        if (cursor.moveToFirst()) {
+            do {
+                int Id = cursor.getInt(0);
+                String Title = cursor.getString(1);
+                int Price = cursor.getInt(2);
+
+                ListingModel listingModel = new ListingModel(Id, Title, Price);
+                returnList.add(listingModel);
+
+            } while (cursor.moveToNext());
+        } else {
+            //Failure to move to find first entry
+        }
+
+        cursor.close();
+        db.close();
+        return returnList;
     }
 }
 

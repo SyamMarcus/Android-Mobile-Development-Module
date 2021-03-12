@@ -6,12 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     // Create variables
     private Button openRegisterButton;
     private Button openListingButton;
+    private Button displayListingsButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openCreateListing();
+            }
+        });
+
+        // Create new button object for the displayListings function
+        displayListingsButton = (Button) findViewById(R.id.displayListingsButton);
+        displayListingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DbHelper dbHelper = new DbHelper(MainActivity.this);
+                List<ListingModel> allListings = dbHelper.getAllListings();
+                Toast.makeText(MainActivity.this, allListings.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
