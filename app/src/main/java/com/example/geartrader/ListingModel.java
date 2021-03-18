@@ -13,6 +13,7 @@ public class ListingModel {
     public ListingModel() {
     }
 
+    // Constructor for displaying the DbHelper method "getAllListings"
     public ListingModel(int id, String title, int price) {
         this.id = id;
         this.title = title;
@@ -22,10 +23,9 @@ public class ListingModel {
     // Generated toString method
     @Override
     public String toString() {
-        return "ListingModel{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                '}';
+        return "ID: " + id +
+                ", Title: '" + title + '\'' +
+                ", Price: £" + price
+                ;
     }
 }

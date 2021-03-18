@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">GearTrader</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="display_listings">Display Listings</string>
+    <string name="enter_listing_title">Enter Listing Title:</string>
+    <string name="return_to_main_activity">Return to Main Activity</string>
+    <string name="title">title</string>
+    <string name="enter_summary">Enter Summary:</string>
+    <string name="summary">summary</string>
+    <string name="enter_price">Enter Price (£) :</string>
+    <string name="price">price</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="enter_username">Enter Username:</string>
+    <string name="username">username</string>
+    <string name="enter_password">Enter Password:</string>
+    <string name="password">password</string>
+    <string name="enter_email">Enter Email:</string>
+    <string name="email">email</string>
+    <string name="refresh_listings">Refresh Listings</string>
 </resources>

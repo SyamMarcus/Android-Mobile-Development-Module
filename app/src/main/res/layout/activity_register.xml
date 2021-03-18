@@ -6,134 +6,94 @@
     android:layout_height="match_parent"
     tools:context="com.example.geartrader.MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Register Activity" />
-
-    <TextView
-        android:id="@+id/userTextView"
-        android:layout_width="168dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="122dp"
-        android:layout_marginLeft="122dp"
-        android:layout_marginTop="116dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:text="Enter Username:" />
-
-    <TextView
-        android:id="@+id/emailTextView"
-        android:layout_width="168dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="122dp"
-        android:layout_marginLeft="122dp"
-        android:layout_marginTop="271dp"
-        android:gravity="center"
-        android:text="Enter Email:"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/passTextView"
-        android:layout_width="168dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="186dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:text="Enter Password:" />
-
-    <EditText
-        android:id="@+id/userEditTextView"
-        android:hint="username"
-        android:layout_width="168dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="137dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginRight="121dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:gravity="center"
-        android:textSize="15sp" />
-
-
-    <EditText
-        android:id="@+id/passEditTextView"
-        android:layout_width="168dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="206dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:textSize="15sp" />
-
-    <EditText
-        android:id="@+id/emailEditTextView"
-        android:layout_width="168dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="291dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginRight="121dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="email"
-        android:inputType="textEmailAddress"
-        android:textSize="15sp" />
-
-
-    <Button
-        android:id="@+id/createUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="114dp"
-        android:layout_marginLeft="114dp"
-        android:layout_marginTop="426dp"
-        android:text="Create User" />
-
     <Button
         android:id="@+id/openMainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="114dp"
-        android:layout_marginLeft="114dp"
-        android:layout_marginTop="40dp"
-        android:text="Return to main Activity" />
+        android:layout_marginTop="25dp"
+        android:textAllCaps="false"
+        android:text="@string/return_to_main_activity"/>
+
+    <TextView
+        android:id="@+id/userTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/openMainButton"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/enter_username" />
+
+    <EditText
+        android:id="@+id/userEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userTextView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/passTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userEditTextView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/enter_password" />
+
+    <EditText
+        android:id="@+id/passEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passTextView"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passEditTextView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="@string/enter_email" />
+
+    <EditText
+        android:id="@+id/emailEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailTextView"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:autofillHints="" />
+
+
+    <Button
+        android:id="@+id/createUser"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="@string/confirm" />
 
 </RelativeLayout>

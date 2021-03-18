@@ -11,13 +11,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     // Create class-member variables
     private Button openRegisterButton;
-    private Button openListingButton;
+    private FloatingActionButton openListingButton;
     private Button displayListingsButton;
     private ListView listingsList;
 
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Create new button object for the openListing function
-        openListingButton = (Button) findViewById(R.id.openListingButton);
+        openListingButton = (FloatingActionButton) findViewById(R.id.openListingButton);
         openListingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
