@@ -88,6 +88,24 @@
         android:inputType="textPersonName"
         android:autofillHints="" />
 
+    <ImageView
+        android:id="@+id/listingImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/priceEditTextView"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@android:drawable/ic_menu_report_image"
+        android:contentDescription="Image for the user to Upload with the listing" />
+
+    <Button
+        android:id="@+id/selectImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listingImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="@string/select_image" />
+
     <Button
         android:id="@+id/createListing"
         android:layout_width="300dp"

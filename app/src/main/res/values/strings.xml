@@ -17,4 +17,5 @@
     <string name="enter_email">Enter Email:</string>
     <string name="email">email</string>
     <string name="refresh_listings">Refresh Listings</string>
+    <string name="select_image">Select Image</string>
 </resources>
