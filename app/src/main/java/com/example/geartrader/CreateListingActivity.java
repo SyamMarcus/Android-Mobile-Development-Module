@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
@@ -30,6 +31,7 @@ public class CreateListingActivity extends AppCompatActivity {
     EditText Title, Summary, Price;
     private Button openMainButton;
     private Button createListing;
+    private Button openCameraButton;
     private ImageView listingImageView;
     private Button selectImageButton;
     private static final String TAG = "3";
@@ -53,6 +55,15 @@ public class CreateListingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openMain();
+            }
+        });
+
+        // Create new button object for the openMain function
+        openCameraButton = (Button) findViewById(R.id.openCameraButton);
+        openCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera();
             }
         });
 
@@ -89,6 +100,11 @@ public class CreateListingActivity extends AppCompatActivity {
     // Create new intent to start Main Activity
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void openCamera() {
+        Intent intent = new Intent(this, CameraActivity.class);
         startActivity(intent);
     }
 
