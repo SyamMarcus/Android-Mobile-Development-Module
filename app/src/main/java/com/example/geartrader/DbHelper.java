@@ -31,10 +31,10 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String PRICE = "PRICE";
     private static final String SUMMARY = "SUMMARY";
     private static final String DATE_CREATED = "DATE_CREATED";
-    private static final String IMAGE_URL = "IMAGE_URL";
+    private static final String IMAGE = "IMAGE";
     private static final String ACTIVE = "ACTIVE";
     private static final String AUTHOR_ID = "AUTHOR_ID";
-    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" INT(32) NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE_URL+" VARCHAR(2048) , "+ACTIVE+" BOOL, "+AUTHOR_ID+" INT);";
+    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" INT(32) NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE+" BLOB, "+ACTIVE+" BOOL, "+AUTHOR_ID+" INT);";
 
     private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+ USERS_TABLE;
     private static final String TAG = "db";
@@ -93,6 +93,7 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(TITLE, createListingActivity.getListingTitle());
         cv.put(SUMMARY, createListingActivity.getSummary());
         cv.put(PRICE, createListingActivity.getPrice());
+        cv.put(IMAGE, createListingActivity.getImage());
 
         try {
             db.insert(LISTINGS_TABLE, null, cv);
@@ -107,13 +108,13 @@ public class DbHelper extends SQLiteOpenHelper {
 
     // Method for getting all entries in LISTINGS_TABLE using a list of ListingModel objects
     public List<ListingModel> getAllListings() {
+        SQLiteDatabase db = this.getReadableDatabase();
 
         // Initialise new array list to return an array of ListingModel objects
         List<ListingModel> returnList = new ArrayList<>();
 
         // Setup database query from readable database
         String query = "SELECT * FROM " + LISTINGS_TABLE;
-        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
         // Move to first entry in Listings table and append ListingModel objects to the return list
@@ -136,5 +137,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
         return returnList;
     }
+
 }
+
 

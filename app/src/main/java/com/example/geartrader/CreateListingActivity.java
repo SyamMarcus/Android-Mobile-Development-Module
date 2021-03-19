@@ -10,10 +10,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.icu.text.UnicodeSetSpanner;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -79,6 +80,7 @@ public class CreateListingActivity extends AppCompatActivity {
                     Title.setText("");
                     Summary.setText("");
                     Price.setText("");
+                    listingImageView.setImageBitmap(Bitmap.createBitmap(200, 200,  Bitmap.Config.ARGB_8888));
                 }
             }
         });
@@ -90,10 +92,20 @@ public class CreateListingActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // Convert ImageView to byte array
+    public byte[] imageViewToByte (ImageView imageView) {
+        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageInByte = baos.toByteArray();
+        return imageInByte;
+    }
+
     // Getter functions for createListing
     public String getListingTitle() { return Title.getText().toString(); }
     public String getSummary() { return Summary.getText().toString(); }
     public String getPrice() { return Price.getText().toString(); }
+    public byte[] getImage() { return imageViewToByte(listingImageView); }
 
     // Validate the strings for the createListing function
     private boolean validateCreateListing() {

@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         DbHelper dbHelper = new DbHelper(MainActivity.this);
         displayAllListings(dbHelper);
 
+
         // Create new button object for the openRegister function
         openRegisterButton = (Button) findViewById(R.id.openRegisterButton);
         openRegisterButton.setOnClickListener(new View.OnClickListener() {
