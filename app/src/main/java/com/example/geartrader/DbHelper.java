@@ -140,8 +140,34 @@ public class DbHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnList;
+
+
     }
 
+    public ListingModel getListing() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Initialise new array list to return an array of ListingModel objects
+
+        // Setup database query from readable database
+        String query = "SELECT * FROM " + LISTINGS_TABLE;
+        Cursor cursor = db.rawQuery(query, null);
+
+        // Move to first entry in Listings table and append ListingModel objects to the return list
+        // Continue moving through the Listing table until there are no more entries.
+        cursor.moveToFirst();
+        int Id = cursor.getInt(0);
+        String Title = cursor.getString(1);
+        int Price = cursor.getInt(2);
+        double Lat = cursor.getDouble(6);
+        double Lng = cursor.getDouble(7);
+
+        ListingModel listingModel = new ListingModel(Id, Title, Price, Lat, Lng);
+
+        cursor.close();
+        db.close();
+        return listingModel;
+    }
 }
 
 

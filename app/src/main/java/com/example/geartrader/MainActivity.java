@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         openMapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMap();
+                openMap(dbHelper);
             }
         });
 
@@ -80,8 +80,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openMap() {
+    public void openMap(DbHelper dbHelper) {
+        ListingModel listingModel = dbHelper.getListing();
         Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("lat", listingModel.getLat());
+        intent.putExtra("lng", listingModel.getLng());
         startActivity(intent);
     }
 
