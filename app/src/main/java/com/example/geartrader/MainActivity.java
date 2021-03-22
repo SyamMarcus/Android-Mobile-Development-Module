@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button openRegisterButton;
     private FloatingActionButton openListingButton;
     private Button displayListingsButton;
+    private Button openMapButton;
     private ListView listingsList;
 
 
@@ -42,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openRegister();
+            }
+        });
+
+        // Create new button object for the openRegister function
+        openMapButton = (Button) findViewById(R.id. openMapButton);
+        openMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMap();
             }
         });
 
@@ -67,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
     // Create new intent to start Register Activity
     public void openRegister() {
         Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMap() {
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 
