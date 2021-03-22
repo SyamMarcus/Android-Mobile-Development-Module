@@ -15,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,9 +23,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class CreateListingActivity extends AppCompatActivity {
     // Create class-member variables
@@ -36,6 +42,7 @@ public class CreateListingActivity extends AppCompatActivity {
     private Button selectImageButton;
     private static final String TAG = "3";
 
+    final int cameraRequestCode = 200;
     final int galleryRequestCode = 100;
 
     @Override
@@ -105,7 +112,7 @@ public class CreateListingActivity extends AppCompatActivity {
 
     public void openCamera() {
         Intent intent = new Intent(this, CameraActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
 
     // Convert ImageView to byte array
@@ -167,6 +174,18 @@ public class CreateListingActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         }
+
+        if (requestCode == 2) {
+            String photoPath = Environment.getExternalStorageDirectory()+"/pic.jpg";
+            Log.e(TAG,"Tried to open: " + photoPath);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 8;
+            final Bitmap b = BitmapFactory.decodeFile(photoPath, options);
+            listingImageView.setImageBitmap(b);
+        } else {
+            Log.e(TAG,"CAMERA NOT OK");
+        }
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 }

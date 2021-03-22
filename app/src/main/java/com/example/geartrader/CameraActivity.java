@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 import android.util.Size;
@@ -237,6 +238,13 @@ public class CameraActivity extends AppCompatActivity {
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
+                    // ADDED FINISH METHOD //
+                    Intent resultIntent = new Intent();
+                    Intent intent=new Intent();
+                    intent.putExtra("MESSAGE", Environment.getExternalStorageDirectory()+"/pic.jpg");
+                    setResult(2,intent);
+                    //finish();//finishing activity
+                    //closeCamera();
                     createCameraPreview();
                 }
             };
