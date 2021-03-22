@@ -32,6 +32,7 @@ public class CreateListingActivity extends AppCompatActivity {
     private Button createListing;
     private ImageView listingImageView;
     private Button selectImageButton;
+    private Button openMapsButton;
     private static final String TAG = "3";
 
     final int galleryRequestCode = 100;
@@ -53,6 +54,14 @@ public class CreateListingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openMain();
+            }
+        });
+
+        openMapsButton = (Button) findViewById(R.id.openMapsButton);
+        openMapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMaps();
             }
         });
 
@@ -89,6 +98,11 @@ public class CreateListingActivity extends AppCompatActivity {
     // Create new intent to start Main Activity
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMaps() {
+        Intent intent = new Intent(this,  MapsActivityCurrentPlace.class);
         startActivity(intent);
     }
 

@@ -106,6 +106,15 @@
         android:contentDescription="Image for the user to Upload with the listing" />
 
     <Button
+        android:id="@+id/openMapsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listingImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="@string/select_location" />
+
+    <Button
         android:id="@+id/createListing"
         android:layout_width="300dp"
         android:layout_height="50dp"
