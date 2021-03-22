@@ -2,6 +2,7 @@ package com.example.geartrader;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -230,6 +231,15 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(lastKnownLocation.getLatitude(),
                                                 lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+
+                                LatLng local = new LatLng(lastKnownLocation.getLatitude(),
+                                        lastKnownLocation.getLongitude());
+                                double[] latlng = new double[2];
+                                latlng[0] = local.latitude;
+                                latlng[1] = local.longitude;
+                                Intent intent = new Intent();
+                                intent.putExtra("latlng", latlng);
+                                setResult(2,intent);
                             }
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");

@@ -32,9 +32,11 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SUMMARY = "SUMMARY";
     private static final String DATE_CREATED = "DATE_CREATED";
     private static final String IMAGE = "IMAGE";
+    private static final String LAT = "LAT";
+    private static final String LNG = "LNG";
     private static final String ACTIVE = "ACTIVE";
     private static final String AUTHOR_ID = "AUTHOR_ID";
-    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" INT(32) NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE+" BLOB, "+ACTIVE+" BOOL, "+AUTHOR_ID+" INT);";
+    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" INT(32) NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE+" BLOB, "+LAT+" REAL, "+LNG+" REAL,"+ACTIVE+" BOOL, "+AUTHOR_ID+" INT);";
 
     private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+ USERS_TABLE;
     private static final String TAG = "db";
@@ -94,6 +96,8 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(SUMMARY, createListingActivity.getSummary());
         cv.put(PRICE, createListingActivity.getPrice());
         cv.put(IMAGE, createListingActivity.getImage());
+        cv.put(LAT, createListingActivity.getLat());
+        cv.put(LNG, createListingActivity.getLng());
 
         try {
             db.insert(LISTINGS_TABLE, null, cv);

@@ -5,6 +5,8 @@ public class ListingModel {
     private int id;
     private String title;
     private int price;
+    private double lat;
+    private double lng;
 
 
     // Public //
@@ -18,6 +20,14 @@ public class ListingModel {
         this.id = id;
         this.title = title;
         this.price = price;
+    }
+
+    public ListingModel(int id, String title, int price, double lat, double lng) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     // Generated toString method

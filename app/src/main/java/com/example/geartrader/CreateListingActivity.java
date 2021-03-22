@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -33,6 +35,9 @@ public class CreateListingActivity extends AppCompatActivity {
     private ImageView listingImageView;
     private Button selectImageButton;
     private Button openMapsButton;
+    private Double Lat;
+    private Double Lng;
+
     private static final String TAG = "3";
 
     final int galleryRequestCode = 100;
@@ -103,7 +108,7 @@ public class CreateListingActivity extends AppCompatActivity {
 
     public void openMaps() {
         Intent intent = new Intent(this,  MapsActivityCurrentPlace.class);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
 
     // Convert ImageView to byte array
@@ -120,6 +125,9 @@ public class CreateListingActivity extends AppCompatActivity {
     public String getSummary() { return Summary.getText().toString(); }
     public String getPrice() { return Price.getText().toString(); }
     public byte[] getImage() { return imageViewToByte(listingImageView); }
+    public double getLat() { return Lat; }
+    public double getLng() { return Lng; }
+
 
     // Validate the strings for the createListing function
     private boolean validateCreateListing() {
@@ -155,6 +163,7 @@ public class CreateListingActivity extends AppCompatActivity {
     // If the result code for new activity is ok, set the listingImageView to the selected image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == galleryRequestCode && resultCode == RESULT_OK && data != null) {
             Uri uri = data.getData();
             try {
@@ -165,6 +174,14 @@ public class CreateListingActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         }
-        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2) {
+            Log.e(TAG,"ResultCode==2");
+            assert data != null;
+            double[] latlng = data.getDoubleArrayExtra("latlng");
+            Lat = latlng[0];
+            Lng = latlng[1];
+        } else {
+            Log.e(TAG,"ResultCode!=2");
+        }
     }
 }
