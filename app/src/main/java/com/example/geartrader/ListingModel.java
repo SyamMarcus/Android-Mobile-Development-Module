@@ -37,8 +37,7 @@ public class ListingModel {
     // Generated toString method
     @Override
     public String toString() {
-        return "ID: " + id +
-                ", Title: '" + title + '\'' +
+        return  title + '\'' +
                 ", Price: £" + price
                 ;
     }

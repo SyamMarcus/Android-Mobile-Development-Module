@@ -11,17 +11,16 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -30,7 +29,7 @@ import java.io.InputStream;
 public class CreateListingActivity extends AppCompatActivity {
     // Create class-member variables
     EditText Title, Summary, Price;
-    private Button openMainButton;
+    private Button selectCategoryButton;
     private Button createListing;
     private ImageView listingImageView;
     private Button selectImageButton;
@@ -41,6 +40,7 @@ public class CreateListingActivity extends AppCompatActivity {
     private static final String TAG = "3";
 
     final int galleryRequestCode = 100;
+    final int mapsRequestCode = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +53,12 @@ public class CreateListingActivity extends AppCompatActivity {
         Price = (EditText) findViewById(R.id.priceEditTextView);
         listingImageView = (ImageView) findViewById(R.id.listingImageView);
 
-        // Create new button object for the openMain function
-        openMainButton = (Button) findViewById(R.id.openMainButton);
-        openMainButton.setOnClickListener(new View.OnClickListener() {
+
+        selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
+        selectCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openMain();
+            public void onClick(View view) {
+                selectCategory();
             }
         });
 
@@ -100,10 +100,20 @@ public class CreateListingActivity extends AppCompatActivity {
         });
     }
 
-    // Create new intent to start Main Activity
-    public void openMain() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    public void selectCategory() {
+        // Initializing the popup menu and giving the reference as current context
+        PopupMenu popupMenu = new PopupMenu(CreateListingActivity.this, selectCategoryButton);
+
+        popupMenu.getMenuInflater().inflate(R.menu.category_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                // Toast message on menu item clicked
+                Toast.makeText(CreateListingActivity.this, menuItem.getTitle() + " selected", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+        popupMenu.show();
     }
 
     public void openMaps() {
@@ -165,6 +175,7 @@ public class CreateListingActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == galleryRequestCode && resultCode == RESULT_OK && data != null) {
+            Log.e(TAG,"ResultCode==galleryRequestCode");
             Uri uri = data.getData();
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -174,14 +185,12 @@ public class CreateListingActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         }
-        if (requestCode == 2) {
-            Log.e(TAG,"ResultCode==2");
+        if (requestCode == mapsRequestCode) {
+            Log.e(TAG,"RequestCode==mapsRequestCode");
             assert data != null;
             double[] latlng = data.getDoubleArrayExtra("latlng");
             Lat = latlng[0];
             Lng = latlng[1];
-        } else {
-            Log.e(TAG,"ResultCode!=2");
         }
     }
 }

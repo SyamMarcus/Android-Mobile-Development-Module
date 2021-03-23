@@ -7,19 +7,19 @@
     tools:context="com.example.geartrader.MainActivity">
 
     <Button
-        android:id="@+id/openMainButton"
+        android:id="@+id/selectCategoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:textAllCaps="false"
-        android:text="@string/return_to_main_activity" />
+        android:text="@string/select_category" />
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/openMainButton"
+        android:layout_below="@id/selectCategoryButton"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:textStyle="bold"
