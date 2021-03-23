@@ -93,8 +93,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
         // Get query data from CreateListingActivity
         cv.put(TITLE, createListingActivity.getListingTitle());
-        cv.put(SUMMARY, createListingActivity.getSummary());
         cv.put(PRICE, createListingActivity.getPrice());
+        cv.put(SUMMARY, createListingActivity.getSummary());
         cv.put(IMAGE, createListingActivity.getImage());
         cv.put(LAT, createListingActivity.getLat());
         cv.put(LNG, createListingActivity.getLng());
@@ -127,7 +127,7 @@ public class DbHelper extends SQLiteOpenHelper {
             do {
                 int Id = cursor.getInt(0);
                 String Title = cursor.getString(1);
-                int Price = cursor.getInt(2);
+                float Price = cursor.getFloat(2);
 
                 ListingModel listingModel = new ListingModel(Id, Title, Price);
                 returnList.add(listingModel);
@@ -140,17 +140,17 @@ public class DbHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnList;
-
-
     }
 
-    public ListingModel getListing() {
+
+    public ListingModel getListingById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Initialise new array list to return an array of ListingModel objects
 
         // Setup database query from readable database
-        String query = "SELECT * FROM " + LISTINGS_TABLE;
+        String query = "SELECT * FROM " + LISTINGS_TABLE + " WHERE ID = " + id;
+
         Cursor cursor = db.rawQuery(query, null);
 
         // Move to first entry in Listings table and append ListingModel objects to the return list
@@ -158,11 +158,13 @@ public class DbHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
         int Id = cursor.getInt(0);
         String Title = cursor.getString(1);
-        int Price = cursor.getInt(2);
+        float Price = cursor.getFloat(2);
+        String Summary = cursor.getString(3);
+        String Date = cursor.getString(4);
         double Lat = cursor.getDouble(6);
         double Lng = cursor.getDouble(7);
 
-        ListingModel listingModel = new ListingModel(Id, Title, Price, Lat, Lng);
+        ListingModel listingModel = new ListingModel(Id, Title, Price, Summary, Date, Lat, Lng);
 
         cursor.close();
         db.close();

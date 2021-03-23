@@ -4,7 +4,9 @@ public class ListingModel {
     // Private //
     private int id;
     private String title;
-    private int price;
+    private float price;
+    private String summary;
+    private String date;
     private double lat;
     private double lng;
 
@@ -16,16 +18,18 @@ public class ListingModel {
     }
 
     // Constructor for displaying the DbHelper method "getAllListings"
-    public ListingModel(int id, String title, int price) {
+    public ListingModel(int id, String title, float price) {
         this.id = id;
         this.title = title;
         this.price = price;
     }
 
-    public ListingModel(int id, String title, int price, double lat, double lng) {
+    public ListingModel(int id, String title, float price, String summary, String date, double lat, double lng) {
         this.id = id;
         this.title = title;
         this.price = price;
+        this.summary = summary;
+        this.date = date;
         this.lat = lat;
         this.lng = lng;
     }
@@ -55,12 +59,28 @@ public class ListingModel {
         this.title = title;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public double getLat() {
