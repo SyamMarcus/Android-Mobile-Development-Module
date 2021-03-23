@@ -7,6 +7,7 @@ public class ListingModel {
     private float price;
     private String summary;
     private String date;
+    private byte[] image;
     private double lat;
     private double lng;
 
@@ -24,12 +25,13 @@ public class ListingModel {
         this.price = price;
     }
 
-    public ListingModel(int id, String title, float price, String summary, String date, double lat, double lng) {
+    public ListingModel(int id, String title, float price, String summary, String date, byte[] image, double lat, double lng) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.summary = summary;
         this.date = date;
+        this.image = image;
         this.lat = lat;
         this.lng = lng;
     }
@@ -41,6 +43,10 @@ public class ListingModel {
                 ", Price: £" + price
                 ;
     }
+
+    public byte[] getImage() { return image; }
+
+    public void setImage(byte[] image) { this.image = image; }
 
     public int getId() {
         return id;

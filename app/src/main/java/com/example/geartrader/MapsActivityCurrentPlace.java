@@ -239,7 +239,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                                 latlng[1] = local.longitude;
                                 Intent intent = new Intent();
                                 intent.putExtra("latlng", latlng);
-                                setResult(2,intent);
+                                setResult(200,intent);
                             }
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");

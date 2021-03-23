@@ -162,10 +162,11 @@ public class DbHelper extends SQLiteOpenHelper {
         float Price = cursor.getFloat(2);
         String Summary = cursor.getString(3);
         String Date = cursor.getString(4);
+        byte[] Image = cursor.getBlob(5);
         double Lat = cursor.getDouble(6);
         double Lng = cursor.getDouble(7);
 
-        ListingModel listingModel = new ListingModel(Id, Title, Price, Summary, Date, Lat, Lng);
+        ListingModel listingModel = new ListingModel(Id, Title, Price, Summary, Date, Image, Lat, Lng);
 
         cursor.close();
         db.close();

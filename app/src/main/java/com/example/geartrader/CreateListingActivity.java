@@ -118,7 +118,7 @@ public class CreateListingActivity extends AppCompatActivity {
 
     public void openMaps() {
         Intent intent = new Intent(this,  MapsActivityCurrentPlace.class);
-        startActivityForResult(intent, 2);
+        startActivityForResult(intent, mapsRequestCode);
     }
 
     // Convert ImageView to byte array
