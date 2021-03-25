@@ -17,6 +17,7 @@ public class SingleListingActivity extends AppCompatActivity {
     private TextView titleTextView;
     private TextView priceTextView;
     private TextView dateTextView;
+    private TextView categoryTextView;
     private TextView summaryTextView;
     private Button openMapButton;
     private ImageView listingImageView;
@@ -30,6 +31,7 @@ public class SingleListingActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.titleTextView);
         priceTextView = findViewById(R.id.priceTextView);
         dateTextView = findViewById(R.id.dateTextView);
+        categoryTextView = findViewById(R.id.categoryTextView);
         listingImageView = findViewById(R.id.listingImageView);
 
         DbHelper dbHelper = new DbHelper(SingleListingActivity.this);
@@ -39,12 +41,13 @@ public class SingleListingActivity extends AppCompatActivity {
         titleTextView.setText(listingModel.getTitle());
         priceTextView.setText(String.valueOf(listingModel.getPrice()));
         dateTextView.setText(listingModel.getDate());
+        categoryTextView.setText(listingModel.getCategory());
         //summaryTextView.setText(listingModel.getSummary());
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(listingModel.getImage(), 0, listingModel.getImage().length);
         listingImageView.setImageBitmap(bitmap);
 
-        // Create new button object for the openRegister function
+        // Create new button object for the openMap function
         openMapButton = (Button) findViewById(R.id. openMapButton);
         openMapButton.setOnClickListener(new View.OnClickListener() {
             @Override

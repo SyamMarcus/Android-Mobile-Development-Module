@@ -10,10 +10,31 @@
         android:id="@+id/selectCategoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="25dp"
-        android:textAllCaps="false"
-        android:text="@string/select_category" />
+        android:text="@string/select_category"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/categoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_toEndOf="@+id/selectCategoryButton"
+        android:layout_toRightOf="@+id/selectCategoryButton"
+        android:gravity="center"
+        android:text="category"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/titleTextView"

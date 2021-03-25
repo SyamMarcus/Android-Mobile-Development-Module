@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -36,6 +37,8 @@ public class CreateListingActivity extends AppCompatActivity {
     private Button openMapsButton;
     private Double Lat;
     private Double Lng;
+    private String Category;
+    private TextView categoryTextView;
 
     private static final String TAG = "3";
 
@@ -52,6 +55,7 @@ public class CreateListingActivity extends AppCompatActivity {
         Summary = (EditText) findViewById(R.id.summaryEditTextView);
         Price = (EditText) findViewById(R.id.priceEditTextView);
         listingImageView = (ImageView) findViewById(R.id.listingImageView);
+        categoryTextView = (TextView) findViewById(R.id.categoryTextView);
 
 
         selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
@@ -103,12 +107,13 @@ public class CreateListingActivity extends AppCompatActivity {
     public void selectCategory() {
         // Initializing the popup menu and giving the reference as current context
         PopupMenu popupMenu = new PopupMenu(CreateListingActivity.this, selectCategoryButton);
-
         popupMenu.getMenuInflater().inflate(R.menu.category_menu, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 // Toast message on menu item clicked
+                Category = menuItem.getTitle().toString();
+                categoryTextView.setText(Category);
                 Toast.makeText(CreateListingActivity.this, menuItem.getTitle() + " selected", Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -137,6 +142,8 @@ public class CreateListingActivity extends AppCompatActivity {
     public byte[] getImage() { return imageViewToByte(listingImageView); }
     public double getLat() { return Lat; }
     public double getLng() { return Lng; }
+    public String getCategory() { return Category; }
+
 
 
     // Validate the strings for the createListing function

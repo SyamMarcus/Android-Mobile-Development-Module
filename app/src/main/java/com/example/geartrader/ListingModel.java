@@ -10,6 +10,7 @@ public class ListingModel {
     private byte[] image;
     private double lat;
     private double lng;
+    private String category;
 
 
     // Public //
@@ -25,7 +26,8 @@ public class ListingModel {
         this.price = price;
     }
 
-    public ListingModel(int id, String title, float price, String summary, String date, byte[] image, double lat, double lng) {
+    public ListingModel(int id, String title, float price, String summary, String date,
+                        byte[] image, double lat, double lng, String category) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -34,6 +36,7 @@ public class ListingModel {
         this.image = image;
         this.lat = lat;
         this.lng = lng;
+        this.category = category;
     }
 
     // Generated toString method
@@ -43,6 +46,10 @@ public class ListingModel {
                 ", Price: £" + price
                 ;
     }
+
+    public String getCategory() { return category; }
+
+    public void setCategory(String category) { this.category = category; }
 
     public byte[] getImage() { return image; }
 
