@@ -17,10 +17,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -35,15 +38,22 @@ import java.io.InputStreamReader;
 public class CreateListingActivity extends AppCompatActivity {
     // Create class-member variables
     EditText Title, Summary, Price;
-    private Button openMainButton;
+    private Button selectCategoryButton;
     private Button createListing;
     private Button openCameraButton;
     private ImageView listingImageView;
     private Button selectImageButton;
+    private Button openMapsButton;
+    private Double Lat;
+    private Double Lng;
+    private String Category;
+    private TextView categoryTextView;
+
     private static final String TAG = "3";
 
-    final int cameraRequestCode = 200;
+    final int cameraRequestCode = 300;
     final int galleryRequestCode = 100;
+    final int mapsRequestCode = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +65,17 @@ public class CreateListingActivity extends AppCompatActivity {
         Summary = (EditText) findViewById(R.id.summaryEditTextView);
         Price = (EditText) findViewById(R.id.priceEditTextView);
         listingImageView = (ImageView) findViewById(R.id.listingImageView);
+        categoryTextView = (TextView) findViewById(R.id.categoryTextView);
 
-        // Create new button object for the openMain function
-        openMainButton = (Button) findViewById(R.id.openMainButton);
-        openMainButton.setOnClickListener(new View.OnClickListener() {
+
+        selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
+        selectCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openMain();
+            public void onClick(View view) {
+                selectCategory();
             }
         });
+
 
         // Create new button object for the openMain function
         openCameraButton = (Button) findViewById(R.id.openCameraButton);
@@ -71,6 +83,14 @@ public class CreateListingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openCamera();
+            }
+        });
+
+        openMapsButton = (Button) findViewById(R.id.openMapsButton);
+        openMapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMaps();
             }
         });
 
@@ -104,15 +124,31 @@ public class CreateListingActivity extends AppCompatActivity {
         });
     }
 
-    // Create new intent to start Main Activity
-    public void openMain() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    public void selectCategory() {
+        // Initializing the popup menu and giving the reference as current context
+        PopupMenu popupMenu = new PopupMenu(CreateListingActivity.this, selectCategoryButton);
+        popupMenu.getMenuInflater().inflate(R.menu.category_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                // Toast message on menu item clicked
+                Category = menuItem.getTitle().toString();
+                categoryTextView.setText(Category);
+                Toast.makeText(CreateListingActivity.this, menuItem.getTitle() + " selected", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+        popupMenu.show();
     }
 
     public void openCamera() {
         Intent intent = new Intent(this, CameraActivity.class);
-        startActivityForResult(intent, 2);
+        startActivityForResult(intent, cameraRequestCode);
+    }
+
+    public void openMaps() {
+        Intent intent = new Intent(this,  MapsActivityCurrentPlace.class);
+        startActivityForResult(intent, mapsRequestCode);
     }
 
     // Convert ImageView to byte array
@@ -129,6 +165,11 @@ public class CreateListingActivity extends AppCompatActivity {
     public String getSummary() { return Summary.getText().toString(); }
     public String getPrice() { return Price.getText().toString(); }
     public byte[] getImage() { return imageViewToByte(listingImageView); }
+    public double getLat() { return Lat; }
+    public double getLng() { return Lng; }
+    public String getCategory() { return Category; }
+
+
 
     // Validate the strings for the createListing function
     private boolean validateCreateListing() {
@@ -164,7 +205,9 @@ public class CreateListingActivity extends AppCompatActivity {
     // If the result code for new activity is ok, set the listingImageView to the selected image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == galleryRequestCode && resultCode == RESULT_OK && data != null) {
+            Log.e(TAG,"ResultCode==galleryRequestCode");
             Uri uri = data.getData();
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -174,8 +217,7 @@ public class CreateListingActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         }
-
-        if (requestCode == 2) {
+        if (requestCode == cameraRequestCode) {
             String photoPath = Environment.getExternalStorageDirectory()+"/pic.jpg";
             Log.e(TAG,"Tried to open: " + photoPath);
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -186,6 +228,12 @@ public class CreateListingActivity extends AppCompatActivity {
             Log.e(TAG,"CAMERA NOT OK");
         }
 
-        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == mapsRequestCode) {
+            Log.e(TAG,"RequestCode==mapsRequestCode");
+            assert data != null;
+            double[] latlng = data.getDoubleArrayExtra("latlng");
+            Lat = latlng[0];
+            Lng = latlng[1];
+        }
     }
 }

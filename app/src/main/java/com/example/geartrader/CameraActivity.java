@@ -210,6 +210,16 @@ public class CameraActivity extends AppCompatActivity {
                         byte[] bytes = new byte[buffer.capacity()];
                         buffer.get(bytes);
                         save(bytes);
+
+                        // ADDED FINISH METHOD //
+                        Intent resultIntent = new Intent();
+                        Intent intent=new Intent();
+                        intent.putExtra("MESSAGE", Environment.getExternalStorageDirectory()+"/pic.jpg");
+                        setResult(300,intent);
+                        //finish();//finishing activity
+                        //closeCamera();
+                        createCameraPreview();
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -238,14 +248,6 @@ public class CameraActivity extends AppCompatActivity {
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
-                    // ADDED FINISH METHOD //
-                    Intent resultIntent = new Intent();
-                    Intent intent=new Intent();
-                    intent.putExtra("MESSAGE", Environment.getExternalStorageDirectory()+"/pic.jpg");
-                    setResult(2,intent);
-                    //finish();//finishing activity
-                    //closeCamera();
-                    createCameraPreview();
                 }
             };
             cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {

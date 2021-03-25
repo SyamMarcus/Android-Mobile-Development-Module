@@ -18,6 +18,14 @@
     <string name="email">email</string>
     <string name="refresh_listings">Refresh Listings</string>
     <string name="select_image">Select Image</string>
-    <string name="take_picture">Take picture</string>
-    <string name="open_camera">Open Camera</string>
+    <string name="title_activity_maps">Current Place Details</string>
+    <string name="default_info_title">Default Location</string>
+    <string name="default_info_snippet">No places found, because location permission is disabled.</string>
+    <string name="option_get_place">Get place</string>
+    <string name="pick_place">Choose a place</string>
+    <string name="select_location">Select Location</string>
+    <string name="google_maps_key">AIzaSyD_U3RiRbjpUZ87dYgGoVUNoeRrCfskU6Q</string>
+    <string name="open_location">Open Location</string>
+    <string name="select_category">Select Category</string>
+    <string name="take_picture">Take Picture</string>
 </resources>

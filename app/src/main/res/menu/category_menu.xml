@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/guitars"
+        android:title="Guitars" />
+
+    <item
+        android:id="@+id/amplifiers"
+        android:title="Amplifiers" />
+
+    <item
+        android:id="@+id/pedals"
+        android:title="Pedals" />
+
+    <item
+        android:id="@+id/keyboards"
+        android:title="Keyboards" />
+
+</menu>
