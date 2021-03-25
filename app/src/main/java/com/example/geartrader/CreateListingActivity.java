@@ -141,11 +141,6 @@ public class CreateListingActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
-    public void openCamera() {
-        Intent intent = new Intent(this, CameraActivity.class);
-        startActivityForResult(intent, cameraRequestCode);
-    }
-
     public void openMaps() {
         Intent intent = new Intent(this,  MapsActivityCurrentPlace.class);
         startActivityForResult(intent, mapsRequestCode);
@@ -217,23 +212,33 @@ public class CreateListingActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         }
-        if (requestCode == cameraRequestCode) {
-            String photoPath = Environment.getExternalStorageDirectory()+"/pic.jpg";
-            Log.e(TAG,"Tried to open: " + photoPath);
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 8;
-            final Bitmap b = BitmapFactory.decodeFile(photoPath, options);
-            listingImageView.setImageBitmap(b);
+        if (requestCode == cameraRequestCode && data != null) {
+            Log.e(TAG, "RequestCode==cameraRequestCode");
+            if ( data.getByteArrayExtra("image").length > 0) {
+                byte[] image = data.getByteArrayExtra("image");
+                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+                listingImageView.setImageBitmap(bitmap);
+            } else {
+                Log.e(TAG,"Image Byte Array == 0");
+            }
         } else {
-            Log.e(TAG,"CAMERA NOT OK");
+            Log.e(TAG,"cameraRequest data == null");
         }
 
-        if (requestCode == mapsRequestCode) {
+
+        if (requestCode == mapsRequestCode && data != null) {
             Log.e(TAG,"RequestCode==mapsRequestCode");
-            assert data != null;
             double[] latlng = data.getDoubleArrayExtra("latlng");
             Lat = latlng[0];
             Lng = latlng[1];
         }
+    }
+
+
+    // PERSONAL NOTE!!! THE PREVIOUS GIT COMMIT SETTING THE IMAGEVIEW WITH THE FILE PATH
+    // MAY WORK GIVEN AN SSD FOR EXTERNAL STORAGE WHICH MAY SHOW THE IMAGE IN GALLERY??
+    public void openCamera() {
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivityForResult(intent, cameraRequestCode);
     }
 }
