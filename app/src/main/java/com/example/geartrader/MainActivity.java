@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button openRegisterButton;
     private FloatingActionButton openListingButton;
     private Button displayListingsButton;
+    private Button selectCategoryButton;
     private ListView listingsList;
 
     @Override
@@ -73,6 +76,31 @@ public class MainActivity extends AppCompatActivity {
                 displayAllListings(dbHelper);
             }
         });
+
+        selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
+        selectCategoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortByCategory(dbHelper);
+            }
+        });
+    }
+
+    public void sortByCategory(DbHelper dbHelper) {
+        // Initializing the popup menu and giving the reference as current context
+        PopupMenu popupMenu = new PopupMenu(MainActivity.this, selectCategoryButton);
+        popupMenu.getMenuInflater().inflate(R.menu.category_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                // Toast message on menu item clicked
+                ArrayAdapter listingsArrayAdapter = new ArrayAdapter<ListingModel>(MainActivity.this, android.R.layout.simple_list_item_1, dbHelper.getListingByCategory(menuItem.getTitle().toString()));
+                listingsList.setAdapter(listingsArrayAdapter);
+                Toast.makeText(MainActivity.this, menuItem.getTitle() + " selected", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+        popupMenu.show();
     }
 
     // Create new intent to start Register Activity

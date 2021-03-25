@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.example.geartrader.MainActivity">
 
+
+    <Button
+        android:id="@+id/selectCategoryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="204dp"
+        android:text="@string/sort_by_category"
+        android:textAllCaps="false" />
+
     <Button
         android:id="@+id/openRegisterButton"
         android:layout_width="wrap_content"
@@ -37,11 +51,14 @@
         android:id="@+id/openListingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="200dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_input_add"
         android:contentDescription="Used to open listing activity to create a new listing"
-        android:focusable="true" />
+        android:focusable="true"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

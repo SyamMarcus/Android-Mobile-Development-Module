@@ -144,6 +144,39 @@ public class DbHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    // Method for getting all entries in LISTINGS_TABLE using a list of ListingModel objects
+    public List<ListingModel> getListingByCategory(String category) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Initialise new array list to return an array of ListingModel objects
+        List<ListingModel> returnList = new ArrayList<>();
+
+        // Setup database query from readable database
+        String query = "SELECT * FROM " + LISTINGS_TABLE + " WHERE CATEGORY = " + category;
+        Log.e(TAG, "error");
+
+        Cursor cursor = db.rawQuery(query, null);
+        // Move to first entry in Listings table and append ListingModel objects to the return list
+        // Continue moving through the Listing table until there are no more entries.
+        if (cursor.moveToFirst()) {
+            do {
+                int Id = cursor.getInt(0);
+                String Title = cursor.getString(1);
+                float Price = cursor.getFloat(2);
+
+                ListingModel listingModel = new ListingModel(Id, Title, Price);
+                returnList.add(listingModel);
+
+            } while (cursor.moveToNext());
+        } else {
+            //Failure to move to find first entry
+        }
+
+        cursor.close();
+
+        db.close();
+        return returnList;
+    }
 
     public ListingModel getListingById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
