@@ -35,12 +35,12 @@ public class CreateListingActivity extends AppCompatActivity {
     private ImageView listingImageView;
     private Button selectImageButton;
     private Button openMapsButton;
-    private Double Lat;
-    private Double Lng;
-    private String Category;
+    private Double Lat = 0.0;
+    private Double Lng = 0.0;
+    private String Category = "No Category";
     private TextView categoryTextView;
 
-    private static final String TAG = "3";
+    private static final String TAG = "Create Listing";
 
     final int galleryRequestCode = 100;
     final int mapsRequestCode = 200;
@@ -57,7 +57,7 @@ public class CreateListingActivity extends AppCompatActivity {
         listingImageView = (ImageView) findViewById(R.id.listingImageView);
         categoryTextView = (TextView) findViewById(R.id.categoryTextView);
 
-
+        // Create new button object to open a menu popup to select an item category
         selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
         selectCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +66,7 @@ public class CreateListingActivity extends AppCompatActivity {
             }
         });
 
+        // Create new button object to open the maps activity
         openMapsButton = (Button) findViewById(R.id.openMapsButton);
         openMapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +99,9 @@ public class CreateListingActivity extends AppCompatActivity {
                     Title.setText("");
                     Summary.setText("");
                     Price.setText("");
+                    Lat = 0.0;
+                    Lng = 0.0;
+                    Category = "No Category";
                     listingImageView.setImageBitmap(Bitmap.createBitmap(200, 200,  Bitmap.Config.ARGB_8888));
                 }
             }
@@ -111,7 +115,7 @@ public class CreateListingActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                // Toast message on menu item clicked
+                // Set the category equal to the selected menu item
                 Category = menuItem.getTitle().toString();
                 categoryTextView.setText(Category);
                 Toast.makeText(CreateListingActivity.this, menuItem.getTitle() + " selected", Toast.LENGTH_SHORT).show();
@@ -121,6 +125,7 @@ public class CreateListingActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
+    // Open the Maps Current Place activity
     public void openMaps() {
         Intent intent = new Intent(this,  MapsActivityCurrentPlace.class);
         startActivityForResult(intent, mapsRequestCode);
@@ -136,9 +141,9 @@ public class CreateListingActivity extends AppCompatActivity {
     }
 
     // Getter functions for createListing
-    public String getListingTitle() { return Title.getText().toString(); }
-    public String getSummary() { return Summary.getText().toString(); }
-    public String getPrice() { return Price.getText().toString(); }
+    public String getListingTitle() { return Title.getText().toString().trim(); }
+    public String getSummary() { return Summary.getText().toString().trim(); }
+    public String getPrice() { return Price.getText().toString().trim(); }
     public byte[] getImage() { return imageViewToByte(listingImageView); }
     public double getLat() { return Lat; }
     public double getLng() { return Lng; }
@@ -148,14 +153,20 @@ public class CreateListingActivity extends AppCompatActivity {
 
     // Validate the strings for the createListing function
     private boolean validateCreateListing() {
-        String title = Title.getText().toString();
-        String summary = Summary.getText().toString();
-        if (title.length() < 4 || title.length() > 16) {
+        String title = Title.getText().toString().trim();
+        String summary = Summary.getText().toString().trim();
+        String price = Price.getText().toString();
+
+        if (title.length() < 4 || title.length() > 24) {
             Toast.makeText(CreateListingActivity.this, "Incorrect Title Details", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (summary.length() < 6 || summary.length() > 100)  {
+        if (summary.length() < 10 || summary.length() > 150)  {
             Toast.makeText(CreateListingActivity.this, "Incorrect Summary Details", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (price.length() <= 0 || price.length() > 10)  {
+            Toast.makeText(CreateListingActivity.this, "Incorrect Price Details", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -194,10 +205,13 @@ public class CreateListingActivity extends AppCompatActivity {
         }
         if (requestCode == mapsRequestCode) {
             Log.e(TAG,"RequestCode==mapsRequestCode");
-            assert data != null;
-            double[] latlng = data.getDoubleArrayExtra("latlng");
-            Lat = latlng[0];
-            Lng = latlng[1];
+            if (data != null) {
+                double[] latlng = data.getDoubleArrayExtra("latlng");
+                Lat = latlng[0];
+                Lng = latlng[1];
+            } else {
+                Log.e(TAG,"Maps Activity Error");
+            }
         }
     }
 }

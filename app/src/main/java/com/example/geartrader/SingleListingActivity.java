@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SingleListingActivity extends AppCompatActivity {
 
@@ -28,12 +29,15 @@ public class SingleListingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_listing);
 
+        // Setting variables
         titleTextView = findViewById(R.id.titleTextView);
         priceTextView = findViewById(R.id.priceTextView);
         dateTextView = findViewById(R.id.dateTextView);
         categoryTextView = findViewById(R.id.categoryTextView);
+        summaryTextView = findViewById(R.id.summaryTextView);
         listingImageView = findViewById(R.id.listingImageView);
 
+        // Create a new DbHelper object and set the id for the intent
         DbHelper dbHelper = new DbHelper(SingleListingActivity.this);
         id = getIntent().getIntExtra("id", 1);
         ListingModel listingModel = dbHelper.getListingById(id);
@@ -42,7 +46,7 @@ public class SingleListingActivity extends AppCompatActivity {
         priceTextView.setText(String.valueOf(listingModel.getPrice()));
         dateTextView.setText(listingModel.getDate());
         categoryTextView.setText(listingModel.getCategory());
-        //summaryTextView.setText(listingModel.getSummary());
+        summaryTextView.setText(listingModel.getSummary());
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(listingModel.getImage(), 0, listingModel.getImage().length);
         listingImageView.setImageBitmap(bitmap);
@@ -59,9 +63,14 @@ public class SingleListingActivity extends AppCompatActivity {
     }
     public void openMap(DbHelper dbHelper) {
         ListingModel listingModel = dbHelper.getListingById(id);
-        Intent intent = new Intent(this, MapsActivity.class);
-        intent.putExtra("lat", listingModel.getLat());
-        intent.putExtra("lng", listingModel.getLng());
-        startActivity(intent);
+
+        if (listingModel.getLat() != 0.0 && listingModel.getLng() != 0.0) {
+            Intent intent = new Intent(this, MapsActivity.class);
+            intent.putExtra("lat", listingModel.getLat());
+            intent.putExtra("lng", listingModel.getLng());
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "This Listing does not include a location", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -42,9 +42,7 @@ public class ListingModel {
     // Generated toString method
     @Override
     public String toString() {
-        return  title + '\'' +
-                ", Price: £" + price
-                ;
+        return  title +  ", £" + price + ", " + category;
     }
 
     public String getCategory() { return category; }
