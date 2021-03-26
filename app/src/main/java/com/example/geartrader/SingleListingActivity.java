@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +24,7 @@ public class SingleListingActivity extends AppCompatActivity {
     private TextView summaryTextView;
     private Button openMapButton;
     private ImageView listingImageView;
-
+    Animation animFadeIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +49,12 @@ public class SingleListingActivity extends AppCompatActivity {
         dateTextView.setText(listingModel.getDate());
         categoryTextView.setText(listingModel.getCategory());
         summaryTextView.setText(listingModel.getSummary());
-
         Bitmap bitmap = BitmapFactory.decodeByteArray(listingModel.getImage(), 0, listingModel.getImage().length);
         listingImageView.setImageBitmap(bitmap);
+
+        animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+        listingImageView.setVisibility(View.VISIBLE);
+        listingImageView.startAnimation(animFadeIn);
 
         // Create new button object for the openMap function
         openMapButton = (Button) findViewById(R.id. openMapButton);
