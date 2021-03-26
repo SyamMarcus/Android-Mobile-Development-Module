@@ -6,46 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.geartrader.MainActivity">
 
-    <Button
-        android:id="@+id/selectCategoryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="25dp"
-        android:text="@string/select_category"
-        android:textAllCaps="false" />
 
-    <TextView
-        android:id="@+id/categoryTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_toEndOf="@+id/selectCategoryButton"
-        android:layout_toRightOf="@+id/selectCategoryButton"
-        android:gravity="center"
-        android:text="category"
-        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectCategoryButton"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:textStyle="bold"
+        android:text="@string/enter_listing_title"
         android:textSize="15sp"
-        android:text="@string/enter_listing_title" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/titleEditTextView"
@@ -84,7 +56,7 @@
         android:maxLength ="300"
         android:scrollHorizontally="false"
         android:gravity="left"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:inputType="textCapSentences|textMultiLine"
         android:autofillHints="" />
 
@@ -101,26 +73,88 @@
 
     <EditText
         android:id="@+id/priceEditTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="109dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/priceTextView"
         android:layout_centerHorizontal="true"
+        android:autofillHints=""
         android:ems="10"
-        android:maxLines ="1"
-        android:maxLength="5"
         android:gravity="center"
-        android:textSize="15sp"
         android:hint="@string/price"
         android:inputType="numberDecimal"
-        android:autofillHints="" />
+        android:maxLength="5"
+        android:maxLines="1"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/selectCategoryButton"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceEditTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_toStartOf="@+id/openMapsButton"
+        android:layout_toLeftOf="@+id/openMapsButton"
+        android:text="@string/select_category"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/categoryTextView"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectCategoryButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:text="category"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectCategoryButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_toEndOf="@+id/categoryTextView"
+        android:layout_toRightOf="@+id/categoryTextView"
+        android:gravity="center"
+        android:text="location"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/openMapsButton"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/priceEditTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:text="@string/select_location"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/selectImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/priceEditTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="105dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/select_image" />
 
     <ImageView
@@ -129,17 +163,9 @@
         android:layout_height="200dp"
         android:layout_below="@id/selectImageButton"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@android:drawable/ic_menu_report_image"
-        android:contentDescription="Image for the user to Upload with the listing" />
+        android:contentDescription="Image for the user to Upload with the listing"
+        app:srcCompat="@android:drawable/ic_menu_report_image" />
 
-    <Button
-        android:id="@+id/openMapsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/listingImageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:text="@string/select_location" />
 
     <Button
         android:id="@+id/createListing"

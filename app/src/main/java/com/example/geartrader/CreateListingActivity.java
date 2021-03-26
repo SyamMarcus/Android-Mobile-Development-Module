@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -39,6 +40,8 @@ public class CreateListingActivity extends AppCompatActivity {
     private Double Lng = 0.0;
     private String Category = "No Category";
     private TextView categoryTextView;
+    private TextView locationTextView;
+
 
     private static final String TAG = "Create Listing";
 
@@ -56,6 +59,7 @@ public class CreateListingActivity extends AppCompatActivity {
         Price = (EditText) findViewById(R.id.priceEditTextView);
         listingImageView = (ImageView) findViewById(R.id.listingImageView);
         categoryTextView = (TextView) findViewById(R.id.categoryTextView);
+        locationTextView = (TextView) findViewById(R.id.locationTextView);
 
         // Create new button object to open a menu popup to select an item category
         selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
@@ -189,6 +193,7 @@ public class CreateListingActivity extends AppCompatActivity {
     }
 
     // If the result code for new activity is ok, set the listingImageView to the selected image
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -209,6 +214,7 @@ public class CreateListingActivity extends AppCompatActivity {
                 double[] latlng = data.getDoubleArrayExtra("latlng");
                 Lat = latlng[0];
                 Lng = latlng[1];
+                locationTextView.setText("Location Set");
             } else {
                 Log.e(TAG,"Maps Activity Error");
             }
