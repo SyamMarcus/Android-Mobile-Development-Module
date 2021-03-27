@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/quantum_grey200"
+    tools:context="com.example.geartrader.MainActivity">
+
+    <Button
+        android:id="@+id/openMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textAllCaps="false"
+        android:text="@string/return_to_main_activity"/>
+
+    <TextView
+        android:id="@+id/userTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/openMainButton"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/enter_username" />
+
+    <EditText
+        android:id="@+id/userEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userTextView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/passTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userEditTextView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/enter_password" />
+
+    <EditText
+        android:id="@+id/passEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passTextView"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passEditTextView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="@string/enter_email" />
+
+    <EditText
+        android:id="@+id/emailEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailTextView"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:autofillHints="" />
+
+
+    <Button
+        android:id="@+id/createUser"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="@string/confirm" />
+
+</RelativeLayout>

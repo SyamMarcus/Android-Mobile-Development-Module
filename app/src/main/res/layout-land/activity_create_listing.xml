@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/quantum_grey200"
+    tools:context="com.example.geartrader.MainActivity">
+
+
+    <EditText
+        android:id="@+id/titleEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="93dp"
+        android:layout_marginLeft="93dp"
+        android:layout_marginTop="0dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/title"
+        android:inputType="textCapWords"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/summaryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleEditTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="127dp"
+        android:layout_marginLeft="127dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:text="@string/enter_summary"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/summaryEditTextView"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/summaryTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="0dp"
+        android:autofillHints=""
+        android:ems="8"
+        android:gravity="left"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="300"
+        android:maxLines="4"
+        android:scrollHorizontally="false"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/priceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/summaryEditTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="129dp"
+        android:layout_marginLeft="129dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:text="@string/enter_price"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/priceEditTextView"
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="126dp"
+        android:layout_marginLeft="126dp"
+        android:layout_marginTop="0dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/price"
+        android:inputType="numberDecimal"
+        android:maxLength="5"
+        android:maxLines="1"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/enter_listing_title"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/selectCategoryButton"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceEditTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="395dp"
+        android:layout_marginLeft="395dp"
+        android:layout_marginTop="-233dp"
+        android:text="@string/select_category"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/openMapsButton"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/priceEditTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-233dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:text="@string/select_location"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectCategoryButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center"
+        android:text="location"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/categoryTextView"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectCategoryButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="395dp"
+        android:layout_marginLeft="395dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:text="category"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/selectImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="156dp"
+        android:layout_marginLeft="156dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginRight="112dp"
+        android:layout_marginBottom="239dp"
+        android:layout_toEndOf="@+id/createListing"
+        android:layout_toRightOf="@+id/createListing"
+        android:text="@string/select_image" />
+
+    <ImageView
+        android:id="@+id/listingImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="126dp"
+        android:layout_marginLeft="126dp"
+        android:layout_marginEnd="83dp"
+        android:layout_marginRight="83dp"
+        android:layout_marginBottom="23dp"
+        android:layout_toEndOf="@+id/createListing"
+        android:layout_toRightOf="@+id/createListing"
+        android:contentDescription="Image for the user to Upload with the listing"
+        app:srcCompat="@android:drawable/ic_menu_report_image" />
+
+    <Button
+        android:id="@+id/createListing"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="48dp"
+        android:text="@string/confirm" />
+
+</RelativeLayout>
