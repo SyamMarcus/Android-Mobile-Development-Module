@@ -37,7 +37,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CATEGORY = "CATEGORY";
     private static final String ACTIVE = "ACTIVE";
     private static final String AUTHOR_ID = "AUTHOR_ID";
-    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" REAL NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE+" BLOB, "+LAT+" REAL, "+LNG+" REAL,"+CATEGORY+" VARCHAR(225), "+ACTIVE+" BOOL, "+AUTHOR_ID+" INT);";
+    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" REAL NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE+" BLOB, "+LAT+" REAL, "+LNG+" REAL,"+CATEGORY+" VARCHAR(225) NOT NULL, "+ACTIVE+" BOOL, "+AUTHOR_ID+" INT);";
 
     private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+ USERS_TABLE;
     private static final String TAG = "db";
@@ -130,8 +130,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 int Id = cursor.getInt(0);
                 String Title = cursor.getString(1);
                 float Price = cursor.getFloat(2);
+                String Category = cursor.getString(8);
 
-                ListingModel listingModel = new ListingModel(Id, Title, Price);
+                ListingModel listingModel = new ListingModel(Id, Title, Price, Category);
                 returnList.add(listingModel);
 
             } while (cursor.moveToNext());
@@ -152,7 +153,7 @@ public class DbHelper extends SQLiteOpenHelper {
         List<ListingModel> returnList = new ArrayList<>();
 
         // Setup database query from readable database
-        String query = "SELECT * FROM " + LISTINGS_TABLE + " WHERE CATEGORY = " + category;
+        String query = "SELECT * FROM " + LISTINGS_TABLE + " WHERE " + CATEGORY + " = '" + category + "';";
         Log.e(TAG, "error");
 
         Cursor cursor = db.rawQuery(query, null);
@@ -163,8 +164,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 int Id = cursor.getInt(0);
                 String Title = cursor.getString(1);
                 float Price = cursor.getFloat(2);
+                String Category = cursor.getString(8);
 
-                ListingModel listingModel = new ListingModel(Id, Title, Price);
+                ListingModel listingModel = new ListingModel(Id, Title, Price, Category);
                 returnList.add(listingModel);
 
             } while (cursor.moveToNext());

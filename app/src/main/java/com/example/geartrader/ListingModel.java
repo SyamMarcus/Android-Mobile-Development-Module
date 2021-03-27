@@ -20,10 +20,11 @@ public class ListingModel {
     }
 
     // Constructor for displaying the DbHelper method "getAllListings"
-    public ListingModel(int id, String title, float price) {
+    public ListingModel(int id, String title, float price, String category) {
         this.id = id;
         this.title = title;
         this.price = price;
+        this.category = category;
     }
 
     public ListingModel(int id, String title, float price, String summary, String date,

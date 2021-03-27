@@ -17,4 +17,8 @@
         android:id="@+id/keyboards"
         android:title="Keyboards" />
 
+    <item
+        android:id="@+id/other"
+        android:title="Other" />
+
 </menu>

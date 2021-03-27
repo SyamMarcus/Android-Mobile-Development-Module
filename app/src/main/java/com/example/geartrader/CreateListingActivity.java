@@ -38,7 +38,7 @@ public class CreateListingActivity extends AppCompatActivity {
     private Button openMapsButton;
     private Double Lat = 0.0;
     private Double Lng = 0.0;
-    private String Category = "No Category";
+    private String Category = "Other";
     private TextView categoryTextView;
     private TextView locationTextView;
 
@@ -54,15 +54,15 @@ public class CreateListingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_listing);
 
         // Set variables
-        Title = (EditText) findViewById(R.id.titleEditTextView);
-        Summary = (EditText) findViewById(R.id.summaryEditTextView);
-        Price = (EditText) findViewById(R.id.priceEditTextView);
-        listingImageView = (ImageView) findViewById(R.id.listingImageView);
-        categoryTextView = (TextView) findViewById(R.id.categoryTextView);
-        locationTextView = (TextView) findViewById(R.id.locationTextView);
+        Title = findViewById(R.id.titleEditTextView);
+        Summary = findViewById(R.id.summaryEditTextView);
+        Price = findViewById(R.id.priceEditTextView);
+        listingImageView = findViewById(R.id.listingImageView);
+        categoryTextView = findViewById(R.id.categoryTextView);
+        locationTextView = findViewById(R.id.locationTextView);
 
         // Create new button object to open a menu popup to select an item category
-        selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
+        selectCategoryButton = findViewById(R.id.selectCategoryButton);
         selectCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +71,7 @@ public class CreateListingActivity extends AppCompatActivity {
         });
 
         // Create new button object to open the maps activity
-        openMapsButton = (Button) findViewById(R.id.openMapsButton);
+        openMapsButton = findViewById(R.id.openMapsButton);
         openMapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +80,7 @@ public class CreateListingActivity extends AppCompatActivity {
         });
 
         // Create new button object to request permission to read from gallery storage
-        selectImageButton = (Button) findViewById(R.id.selectImageButton);
+        selectImageButton = findViewById(R.id.selectImageButton);
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,9 +90,8 @@ public class CreateListingActivity extends AppCompatActivity {
                 );
             }
         });
-
         // Create new button object for the createListing function
-        createListing = (Button) findViewById(R.id.createListing);
+        createListing = findViewById(R.id.createListing);
         createListing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +104,7 @@ public class CreateListingActivity extends AppCompatActivity {
                     Price.setText("");
                     Lat = 0.0;
                     Lng = 0.0;
-                    Category = "No Category";
+                    categoryTextView.setText("category");
                     listingImageView.setImageBitmap(Bitmap.createBitmap(200, 200,  Bitmap.Config.ARGB_8888));
                 }
             }
@@ -120,9 +119,9 @@ public class CreateListingActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 // Set the category equal to the selected menu item
-                Category = menuItem.getTitle().toString();
+                Category = menuItem.getTitle().toString().trim();
                 categoryTextView.setText(Category);
-                Toast.makeText(CreateListingActivity.this, menuItem.getTitle() + " selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateListingActivity.this, menuItem.getTitle().toString() + " selected", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -137,6 +136,9 @@ public class CreateListingActivity extends AppCompatActivity {
 
     // Convert ImageView to byte array
     public byte[] imageViewToByte (ImageView imageView) {
+        if (imageView == null) {
+            return new byte[0];
+        }
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);

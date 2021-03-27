@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Create new button object for the openRegister function
-        openRegisterButton = (Button) findViewById(R.id.openRegisterButton);
+        openRegisterButton = findViewById(R.id.openRegisterButton);
         openRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Create new button object for the openListing function
-        openListingButton = (FloatingActionButton) findViewById(R.id.openListingButton);
+        openListingButton = findViewById(R.id.openListingButton);
         openListingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Create new button object for the displayListings function
-        displayListingsButton = (Button) findViewById(R.id.displayListingsButton);
+        displayListingsButton = findViewById(R.id.displayListingsButton);
         displayListingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
+        selectCategoryButton = findViewById(R.id.selectCategoryButton);
         selectCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
