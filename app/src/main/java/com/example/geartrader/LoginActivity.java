@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     // Create class-member variables
     EditText Username, Pass;
     private Button loginButton;
+    private Button openRegisterButton;
     Session session;
 
     private static final String TAG = "3";
@@ -32,6 +33,15 @@ public class LoginActivity extends AppCompatActivity {
         Username = findViewById(R.id.userEditTextView);
         Pass = findViewById(R.id.passEditTextView);
 
+        // Create new button object for the openRegister function
+        openRegisterButton = findViewById(R.id.openRegisterButton);
+        openRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRegister();
+            }
+        });
+
         // Create new button object for the login function
         loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -40,17 +50,20 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG,"Login button clicked");
                 DbHelper dbHelper = new DbHelper(LoginActivity.this);
                 if (dbHelper.authenticateUser(Username.getText().toString().trim(), Pass.getText().toString().trim())) {
-                    session.setUsename(Username.getText().toString().trim());
-                    Toast.makeText(LoginActivity.this, "User Exists!", Toast.LENGTH_SHORT).show();
+                    session.setUsername(Username.getText().toString().trim());
+                    Toast.makeText(LoginActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
+                    finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, "User DOESN'T Exists!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Incorrect User Details", Toast.LENGTH_SHORT).show();
                 }
-                // Reset editText boxes
-                //Username.setText("");
-                //Pass.setText("");
             }
         });
     }
 
+    // Create new intent to start Register Activity
+    public void openRegister() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
 
 }

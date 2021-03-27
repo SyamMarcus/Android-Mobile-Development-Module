@@ -12,12 +12,16 @@ public class Session {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public void setUsename(String usename) {
-        prefs.edit().putString("usename", usename).commit();
+    public void setUsername(String username) {
+        prefs.edit().putString("username", username).commit();
     }
 
-    public String getUsename() {
-        String usename = prefs.getString("usename","");
+    public void resetUsername() {
+        prefs.edit().putString("username", "").commit();
+    }
+
+    public String getUsername() {
+        String usename = prefs.getString("username","");
         return usename;
     }
 }

@@ -54,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Username.setText("");
                 Pass.setText("");
                 Email.setText("");
+                finish();
             }
         });
     }

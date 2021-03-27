@@ -7,30 +7,26 @@
     android:background="@color/quantum_grey200"
     tools:context="com.example.geartrader.MainActivity">
 
+    <Button
+        android:id="@+id/openRegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textAllCaps="false"
+        android:text="@string/create_new_account" />
+
     <TextView
         android:id="@+id/userTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/openRegisterButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="23dp"
         android:gravity="center"
         android:text="@string/enter_username"
         android:textSize="15sp"
         android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/userEditTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/username"
-        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/passTextView"
@@ -56,6 +52,19 @@
         android:gravity="center"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/userEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/username"
         android:textSize="15sp" />
 
     <Button

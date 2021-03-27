@@ -21,30 +21,19 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/openRegisterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:textAllCaps="false"
-        android:text="@string/create_new_account" />
-
-    <Button
         android:id="@+id/openLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/displayListingsButton"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="Login Activity"
+        android:layout_marginTop="25dp"
+        android:text="Login"
         android:textAllCaps="false" />
 
     <Button
         android:id="@+id/testButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/displayListingsButton"
-        android:layout_marginTop="-2dp"
         android:text="test"
         android:textAllCaps="false" />
 
@@ -52,17 +41,17 @@
         android:id="@+id/displayListingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/openRegisterButton"
+        android:layout_below="@id/openLoginButton"
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"
         android:text="@string/refresh_listings" />
 
     <ListView
         android:id="@+id/listingListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="462dp"
         android:layout_below="@+id/openRegisterButton"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="200dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

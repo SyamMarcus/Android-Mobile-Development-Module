@@ -22,7 +22,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     // Create class-member variables
-    private Button openRegisterButton;
     private Button openLoginButton;
     private Button testButton;
     private FloatingActionButton openListingButton;
@@ -43,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = session.getUsename();
-                Toast.makeText(MainActivity.this, "Username: " + user, Toast.LENGTH_SHORT).show();;
+                session.resetUsername();
+                Toast.makeText(MainActivity.this, "Reset Session Username", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -65,15 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Create new button object for the openRegister function
-        openRegisterButton = findViewById(R.id.openRegisterButton);
-        openRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRegister();
-            }
-        });
-
-        // Create new button object for the openRegister function
         openLoginButton = findViewById(R.id.openLoginButton);
         openLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +77,11 @@ public class MainActivity extends AppCompatActivity {
         openListingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCreateListing();
+                if(session.getUsername() == "") {
+                    Toast.makeText(MainActivity.this, "Login to Create A Listing", Toast.LENGTH_SHORT).show();
+                } else {
+                    openCreateListing();
+                }
             }
         });
 
@@ -124,12 +118,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         popupMenu.show();
-    }
-
-    // Create new intent to start Register Activity
-    public void openRegister() {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
     }
 
     // Create new intent to start Login Activity
