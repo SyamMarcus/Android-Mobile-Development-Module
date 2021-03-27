@@ -11,9 +11,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,15 +27,21 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class CreateListingActivity extends AppCompatActivity {
     // Create class-member variables
     EditText Title, Summary, Price;
     private Button selectCategoryButton;
     private Button createListing;
+    private Button openCameraButton;
     private ImageView listingImageView;
     private Button selectImageButton;
     private Button openMapsButton;
@@ -45,6 +54,7 @@ public class CreateListingActivity extends AppCompatActivity {
 
     private static final String TAG = "Create Listing";
 
+    final int cameraRequestCode = 300;
     final int galleryRequestCode = 100;
     final int mapsRequestCode = 200;
 
@@ -61,8 +71,8 @@ public class CreateListingActivity extends AppCompatActivity {
         categoryTextView = findViewById(R.id.categoryTextView);
         locationTextView = findViewById(R.id.locationTextView);
 
-        // Create new button object to open a menu popup to select an item category
-        selectCategoryButton = findViewById(R.id.selectCategoryButton);
+
+        selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
         selectCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,8 +80,18 @@ public class CreateListingActivity extends AppCompatActivity {
             }
         });
 
+
+        // Create new button object for the openCamera function
+        openCameraButton = (Button) findViewById(R.id.openCameraButton);
+        openCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera();
+            }
+        });
+
         // Create new button object to open the maps activity
-        openMapsButton = findViewById(R.id.openMapsButton);
+        openMapsButton = (Button) findViewById(R.id.openMapsButton);
         openMapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,7 +230,21 @@ public class CreateListingActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         }
-        if (requestCode == mapsRequestCode) {
+        if (requestCode == cameraRequestCode && data != null) {
+            Log.e(TAG, "RequestCode==cameraRequestCode");
+            if ( data.getByteArrayExtra("image").length > 0) {
+                byte[] image = data.getByteArrayExtra("image");
+                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+                listingImageView.setImageBitmap(bitmap);
+            } else {
+                Log.e(TAG,"Image Byte Array == 0");
+            }
+        } else {
+            Log.e(TAG,"cameraRequest data == null");
+        }
+
+
+        if (requestCode == mapsRequestCode && data != null) {
             Log.e(TAG,"RequestCode==mapsRequestCode");
             if (data != null) {
                 double[] latlng = data.getDoubleArrayExtra("latlng");
@@ -221,5 +255,13 @@ public class CreateListingActivity extends AppCompatActivity {
                 Log.e(TAG,"Maps Activity Error");
             }
         }
+    }
+
+
+    // PERSONAL NOTE!!! THE PREVIOUS GIT COMMIT SETTING THE IMAGEVIEW WITH THE FILE PATH
+    // MAY WORK GIVEN AN SSD FOR EXTERNAL STORAGE WHICH MAY SHOW THE IMAGE IN GALLERY??
+    public void openCamera() {
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivityForResult(intent, cameraRequestCode);
     }
 }
