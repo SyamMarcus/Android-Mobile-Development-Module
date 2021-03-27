@@ -72,7 +72,7 @@ public class CreateListingActivity extends AppCompatActivity {
         locationTextView = findViewById(R.id.locationTextView);
 
 
-        selectCategoryButton = (Button) findViewById(R.id.selectCategoryButton);
+        selectCategoryButton = findViewById(R.id.selectCategoryButton);
         selectCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +82,7 @@ public class CreateListingActivity extends AppCompatActivity {
 
 
         // Create new button object for the openCamera function
-        openCameraButton = (Button) findViewById(R.id.openCameraButton);
+        openCameraButton = findViewById(R.id.openCameraButton);
         openCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +91,7 @@ public class CreateListingActivity extends AppCompatActivity {
         });
 
         // Create new button object to open the maps activity
-        openMapsButton = (Button) findViewById(R.id.openMapsButton);
+        openMapsButton = findViewById(R.id.openMapsButton);
         openMapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

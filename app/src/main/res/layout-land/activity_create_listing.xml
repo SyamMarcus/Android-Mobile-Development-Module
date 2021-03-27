@@ -122,6 +122,8 @@
         android:text="@string/select_category"
         android:textAllCaps="false" />
 
+
+
     <Button
         android:id="@+id/openMapsButton"
         android:layout_width="148dp"
@@ -133,6 +135,21 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:text="@string/select_location"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/openCameraButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoryTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="405dp"
+        android:layout_marginLeft="405dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="231dp"
+        android:text="Open Camera"
         android:textAllCaps="false" />
 
     <TextView
@@ -167,13 +184,13 @@
         android:id="@+id/selectImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/priceEditTextView"
+        android:layout_below="@+id/locationTextView"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="-140dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginRight="108dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
         android:layout_marginBottom="10dp"
         android:text="@string/select_image" />
 
@@ -182,8 +199,12 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_below="@id/selectImageButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginStart="453dp"
+        android:layout_marginLeft="453dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="78dp"
         android:layout_marginRight="78dp"
