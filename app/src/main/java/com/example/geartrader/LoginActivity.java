@@ -17,6 +17,8 @@ public class LoginActivity extends AppCompatActivity {
     // Create class-member variables
     EditText Username, Pass;
     private Button loginButton;
+    Session session;
+
     private static final String TAG = "3";
 
     @Override
@@ -24,44 +26,31 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        session = new Session(this);
+
         // Set variables
         Username = findViewById(R.id.userEditTextView);
         Pass = findViewById(R.id.passEditTextView);
 
         // Create new button object for the login function
-        loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"Login button clicked");
                 DbHelper dbHelper = new DbHelper(LoginActivity.this);
-                if (validateCreateUser()) {
-                    Toast.makeText(LoginActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+                if (dbHelper.authenticateUser(Username.getText().toString().trim(), Pass.getText().toString().trim())) {
+                    session.setUsename(Username.getText().toString().trim());
+                    Toast.makeText(LoginActivity.this, "User Exists!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "User DOESN'T Exists!", Toast.LENGTH_SHORT).show();
                 }
                 // Reset editText boxes
-                Username.setText("");
-                Pass.setText("");
+                //Username.setText("");
+                //Pass.setText("");
             }
         });
     }
 
-    // Getter functions for createUser
-    public String getUsername() { return Username.getText().toString(); }
-    public String getPassword() { return Pass.getText().toString(); }
 
-    // Validate the strings for the createUser function
-    public boolean validateCreateUser() {
-        String username = Username.getText().toString();
-        String pass = Pass.getText().toString();
-        if (username.length() < 4 || username.length() > 16) {
-            Toast.makeText(LoginActivity.this, "Incorrect Username Details", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (pass.length() < 6 || pass.length() > 16)  {
-            Toast.makeText(LoginActivity.this, "Incorrect Password Details", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        return true;
-    }
 }

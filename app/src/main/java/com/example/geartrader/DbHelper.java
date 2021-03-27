@@ -87,6 +87,23 @@ public class DbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // Method for creating a new user in the users table
+    public boolean authenticateUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + USERS_TABLE + " WHERE " + NAME + " = '" + username + "' AND " + PASSWORD + " = '" + password + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            db.close();
+            return false;
+        }
+        cursor.close();
+        db.close();
+        return true;
+    }
+
     // Method for creating a new listing in the listings table
     public boolean createListing(CreateListingActivity createListingActivity) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -154,7 +171,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         // Setup database query from readable database
         String query = "SELECT * FROM " + LISTINGS_TABLE + " WHERE " + CATEGORY + " = '" + category + "';";
-        Log.e(TAG, "error");
 
         Cursor cursor = db.rawQuery(query, null);
         // Move to first entry in Listings table and append ListingModel objects to the return list

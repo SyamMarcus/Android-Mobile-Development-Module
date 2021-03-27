@@ -24,16 +24,29 @@ public class MainActivity extends AppCompatActivity {
     // Create class-member variables
     private Button openRegisterButton;
     private Button openLoginButton;
+    private Button testButton;
     private FloatingActionButton openListingButton;
     private Button displayListingsButton;
     private Button selectCategoryButton;
     private ListView listingsList;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        session = new Session(this);
+
+        // Create new button object for the openRegister function
+        testButton = findViewById(R.id.testButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String user = session.getUsename();
+                Toast.makeText(MainActivity.this, "Username: " + user, Toast.LENGTH_SHORT).show();;
+            }
+        });
 
         // Set variables
         listingsList = findViewById(R.id.listingListView);
