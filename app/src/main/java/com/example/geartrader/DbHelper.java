@@ -104,6 +104,21 @@ public class DbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public boolean checkListingExists(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + LISTINGS_TABLE + " WHERE ID = " + id;
+
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            db.close();
+            return false;
+        }
+        cursor.close();
+        db.close();
+        return true;
+    }
+
     public boolean deleteListing(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 

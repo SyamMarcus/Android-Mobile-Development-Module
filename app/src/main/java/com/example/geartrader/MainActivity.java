@@ -49,22 +49,27 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        DbHelper dbHelper = new DbHelper(MainActivity.this);
 
         // Set variables
         listingsList = findViewById(R.id.listingListView);
         listingsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int ID = position + 1;
-                Intent intent = new Intent(view.getContext(), SingleListingActivity.class);
-                intent.putExtra("id", ID);
-                startActivity(intent);
+                String description = listingsList.getItemAtPosition(position).toString();
+                int ID = Integer.parseInt(String.valueOf(description.charAt(0)));
+                Log.d("MainActivity", "Clicked Item: " + id + " at position:" + position);
+                if(dbHelper.checkListingExists(ID)) {
+                    Intent intent = new Intent(view.getContext(), SingleListingActivity.class);
+                    intent.putExtra("id", ID);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(MainActivity.this, "Listing no longer exists, please refresh", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        DbHelper dbHelper = new DbHelper(MainActivity.this);
         displayAllListings(dbHelper);
-
 
         // Create new button object for the openRegister function
         openLoginButton = findViewById(R.id.openLoginButton);

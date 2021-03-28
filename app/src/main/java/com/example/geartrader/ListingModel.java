@@ -45,7 +45,7 @@ public class ListingModel {
     // Generated toString method
     @Override
     public String toString() {
-        return  title +  ", £" + price + ", " + category;
+        return  id + " | " + title +  " | £" + price + " | " + category;
     }
 
     public String getAuthor() {

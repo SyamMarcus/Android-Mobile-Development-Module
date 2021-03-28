@@ -1,7 +1,9 @@
 package com.example.geartrader;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -81,9 +83,27 @@ public class PersonalListingActivity extends AppCompatActivity {
     }
 
     public void deleteListing(DbHelper dbHelper, int id) {
-        dbHelper.deleteListing(id);
-        Toast.makeText(this, "Listing Deleted", Toast.LENGTH_SHORT).show();
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Delete Listing");
+        builder.setMessage("Are you sure you want to delete this listing?");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dbHelper.deleteListing(id);
+                        finish();
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void openMap(DbHelper dbHelper) {
