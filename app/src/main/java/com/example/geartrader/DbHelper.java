@@ -36,8 +36,8 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String LNG = "LNG";
     private static final String CATEGORY = "CATEGORY";
     private static final String ACTIVE = "ACTIVE";
-    private static final String AUTHOR_ID = "AUTHOR_ID";
-    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" REAL NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE+" BLOB, "+LAT+" REAL, "+LNG+" REAL,"+CATEGORY+" VARCHAR(225) NOT NULL, "+ACTIVE+" BOOL, "+AUTHOR_ID+" INT);";
+    private static final String AUTHOR = "AUTHOR";
+    private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" REAL NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE+" BLOB, "+LAT+" REAL, "+LNG+" REAL,"+CATEGORY+" VARCHAR(225) NOT NULL, "+ACTIVE+" BOOL, "+AUTHOR+" VARCHAR(225));";
 
     private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+ USERS_TABLE;
     private static final String TAG = "db";
@@ -117,6 +117,7 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(LAT, createListingActivity.getLat());
         cv.put(LNG, createListingActivity.getLng());
         cv.put(CATEGORY, createListingActivity.getCategory());
+        cv.put(AUTHOR, createListingActivity.getAuthor());
 
         try {
             db.insert(LISTINGS_TABLE, null, cv);
@@ -218,8 +219,9 @@ public class DbHelper extends SQLiteOpenHelper {
         double Lat = cursor.getDouble(6);
         double Lng = cursor.getDouble(7);
         String Category = cursor.getString(8);
+        String Author = cursor.getString(10);
 
-        ListingModel listingModel = new ListingModel(Id, Title, Price, Summary, Date, Image, Lat, Lng, Category);
+        ListingModel listingModel = new ListingModel(Id, Title, Price, Summary, Date, Image, Lat, Lng, Category, Author);
 
         cursor.close();
         db.close();

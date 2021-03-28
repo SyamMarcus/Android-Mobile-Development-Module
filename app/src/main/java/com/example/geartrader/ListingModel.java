@@ -11,6 +11,7 @@ public class ListingModel {
     private double lat;
     private double lng;
     private String category;
+    private String author;
 
 
     // Public //
@@ -28,7 +29,7 @@ public class ListingModel {
     }
 
     public ListingModel(int id, String title, float price, String summary, String date,
-                        byte[] image, double lat, double lng, String category) {
+                        byte[] image, double lat, double lng, String category, String author) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -38,12 +39,21 @@ public class ListingModel {
         this.lat = lat;
         this.lng = lng;
         this.category = category;
+        this.author = author;
     }
 
     // Generated toString method
     @Override
     public String toString() {
         return  title +  ", £" + price + ", " + category;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getCategory() { return category; }

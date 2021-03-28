@@ -50,6 +50,7 @@ public class CreateListingActivity extends AppCompatActivity {
     private String Category = "Other";
     private TextView categoryTextView;
     private TextView locationTextView;
+    private Session session;
 
 
     private static final String TAG = "Create Listing";
@@ -62,6 +63,8 @@ public class CreateListingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_listing);
+
+        session = new Session(this);
 
         // Set variables
         Title = findViewById(R.id.titleEditTextView);
@@ -174,6 +177,7 @@ public class CreateListingActivity extends AppCompatActivity {
     public double getLat() { return Lat; }
     public double getLng() { return Lng; }
     public String getCategory() { return Category; }
+    public String getAuthor() { return session.getUsername(); }
 
 
 
