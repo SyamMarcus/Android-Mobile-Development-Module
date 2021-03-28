@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                session.resetUsername();
-                Toast.makeText(MainActivity.this, "Reset Session Username", Toast.LENGTH_SHORT).show();
+                openUserList();
             }
         });
 
@@ -123,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
     // Create new intent to start Login Activity
     public void openLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    // Create new intent to start Login Activity
+    public void openUserList() {
+        Intent intent = new Intent(this, UserListActivity.class);
         startActivity(intent);
     }
 
