@@ -42,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openUserList();
+                if(session.getUsername() == "") {
+                    Toast.makeText(MainActivity.this, "Login to View Your Listings", Toast.LENGTH_SHORT).show();
+                } else {
+                    openUserList();
+                }
             }
         });
 

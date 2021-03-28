@@ -21,7 +21,7 @@ public class UserListActivity extends AppCompatActivity {
 
     private FloatingActionButton openListingButton;
 
-    private Button selectCategoryButton;
+    private Button displayListingsButton;
     private ListView listingsList;
     private Session session;
 
@@ -38,15 +38,23 @@ public class UserListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int ID = position + 1;
-                Intent intent = new Intent(view.getContext(), SingleListingActivity.class);
+                Intent intent = new Intent(view.getContext(), PersonalListingActivity.class);
                 intent.putExtra("id", ID);
                 startActivity(intent);
             }
         });
 
-
         DbHelper dbHelper = new DbHelper(UserListActivity.this);
         displayAllListings(dbHelper);
+
+        // Create new button object for the displayListings function
+        displayListingsButton = findViewById(R.id.displayListingsButton);
+        displayListingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayAllListings(dbHelper);
+            }
+        });
 
         // Create new button object for the openListing function
         openListingButton = findViewById(R.id.openListingButton);

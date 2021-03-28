@@ -104,6 +104,24 @@ public class DbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public boolean deleteListing(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Setup database query from readable database
+        String query = "DELETE FROM " + LISTINGS_TABLE + " WHERE ID = " + id;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            db.close();
+            return true;
+        } else {
+            cursor.close();
+            db.close();
+            return  false;
+        }
+    }
+
     // Method for creating a new listing in the listings table
     public boolean createListing(CreateListingActivity createListingActivity) {
         SQLiteDatabase db = this.getWritableDatabase();
