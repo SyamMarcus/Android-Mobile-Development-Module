@@ -7,20 +7,13 @@
     android:background="@color/quantum_grey200"
     tools:context="com.example.geartrader.RegisterActivity">
 
-    <Button
-        android:id="@+id/openMainButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:textAllCaps="false"
-        android:text="@string/return_to_main_activity"/>
 
     <TextView
         android:id="@+id/userTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/openMainButton"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:textStyle="bold"

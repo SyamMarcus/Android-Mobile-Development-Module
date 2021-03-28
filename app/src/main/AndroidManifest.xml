@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GearTrader">
-        <activity android:name=".PersonalListingActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -26,13 +25,14 @@
         <activity
             android:name=".MapsActivityCurrentPlace"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".SingleListingActivity" />
-        <activity android:name=".UserListActivity" />
-        <activity android:name=".CreateListingActivity" />
-        <activity android:name=".CameraActivity" />
+        <activity android:label="Active Listing" android:name=".SingleListingActivity" />
+        <activity android:label="User Listings" android:name=".UserListActivity" />
+        <activity android:label="Create Listing" android:name=".CreateListingActivity" />
+        <activity android:label="Camera" android:name=".CameraActivity" />
         <activity android:name=".MapsActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:label="Register New Account" android:name=".RegisterActivity" />
+        <activity android:label="Login" android:name=".LoginActivity" />
+        <activity android:label="User Listing" android:name=".PersonalListingActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:label="Active Listings" android:name=".MainActivity" />
     </application>
 
 </manifest>

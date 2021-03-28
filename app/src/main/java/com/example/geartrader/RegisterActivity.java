@@ -30,15 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
         Pass = (EditText) findViewById(R.id.passEditTextView);
         Email = (EditText) findViewById(R.id.emailEditTextView);
 
-        // Create new button object for the openMain function
-        openMainButton = (Button) findViewById(R.id.openMainButton);
-        openMainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG,"openMain button clicked");
-                openMain();
-            }
-        });
 
         // Create new button object for the createUser function
         createUser = (Button) findViewById(R.id.createUser);
@@ -59,11 +50,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    // Create new intent to start Main Activity
-    public void openMain() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
 
     // Getter functions for createUser
     public String getUsername() { return Username.getText().toString(); }

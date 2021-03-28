@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,23 +26,26 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     // Create class-member variables
     private Button openLoginButton;
-    private Button testButton;
+    private Button userListingsButton;
     private FloatingActionButton openListingButton;
-    private Button displayListingsButton;
+    private FloatingActionButton displayListingsButton;
     private Button selectCategoryButton;
     private ListView listingsList;
     private Session session;
+    Animation animFadeIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         session = new Session(this);
 
         // Create new button object for the openRegister function
-        testButton = findViewById(R.id.testButton);
-        testButton.setOnClickListener(new View.OnClickListener() {
+        userListingsButton = findViewById(R.id.userListingsButton);
+        userListingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(session.getUsername() == "") {
@@ -149,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
     public void displayAllListings(DbHelper dbHelper) {
         ArrayAdapter listingsArrayAdapter = new ArrayAdapter<ListingModel>(MainActivity.this, android.R.layout.simple_list_item_1, dbHelper.getAllListings());
         listingsList.setAdapter(listingsArrayAdapter);
+        animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+        listingsList.setVisibility(View.VISIBLE);
+        listingsList.startAnimation(animFadeIn);
     }
 
 }

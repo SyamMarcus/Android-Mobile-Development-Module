@@ -14,9 +14,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="160dp"
         android:text="@string/sort_by_category"
         android:textAllCaps="false" />
 
@@ -25,31 +25,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
         android:text="Login"
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/testButton"
+        android:id="@+id/userListingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="17dp"
+        android:text="View Your Listings"
         android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/displayListingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/openLoginButton"
-        android:layout_centerHorizontal="true"
-        android:textAllCaps="false"
-        android:text="@string/refresh_listings" />
 
     <ListView
         android:id="@+id/listingListView"
         android:layout_width="match_parent"
-        android:layout_height="462dp"
+        android:layout_height="500dp"
         android:layout_below="@+id/openRegisterButton"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="200dp" />
@@ -60,12 +60,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:clickable="true"
         android:contentDescription="Used to open listing activity to create a new listing"
         android:focusable="true"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/displayListingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginRight="91dp"
+        android:clickable="true"
+        android:contentDescription="Used to refresh the listing list"
+        android:focusable="true"
+        app:srcCompat="@android:drawable/stat_notify_sync" />
+
 
 </RelativeLayout>

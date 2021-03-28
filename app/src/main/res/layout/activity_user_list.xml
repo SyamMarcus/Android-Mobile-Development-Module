@@ -9,22 +9,39 @@
 
 
     <Button
-        android:id="@+id/displayListingsButton"
+        android:id="@+id/returnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:text="@string/refresh_listings"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="17dp"
+        android:text="Return to Main Page"
         android:textAllCaps="false" />
 
     <ListView
         android:id="@+id/listingListView"
         android:layout_width="match_parent"
-        android:layout_height="462dp"
+        android:layout_height="500dp"
         android:layout_below="@+id/openRegisterButton"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="200dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/displayListingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginRight="91dp"
+        android:clickable="true"
+        android:contentDescription="Used to refresh the listing list"
+        android:focusable="true"
+        app:srcCompat="@android:drawable/stat_notify_sync" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/openListingButton"
@@ -32,9 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:clickable="true"
         android:contentDescription="Used to open listing activity to create a new listing"
         android:focusable="true"

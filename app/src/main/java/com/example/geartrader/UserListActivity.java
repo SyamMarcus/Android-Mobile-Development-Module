@@ -17,8 +17,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class UserListActivity extends AppCompatActivity {
 
     private FloatingActionButton openListingButton;
-
-    private Button displayListingsButton;
+    private FloatingActionButton displayListingsButton;
+    private Button returnButton;
     private ListView listingsList;
     private Session session;
 
@@ -56,6 +56,15 @@ public class UserListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayAllListings(dbHelper);
+            }
+        });
+
+        // Create new button object for the displayListings function
+        returnButton = findViewById(R.id.returnButton);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
