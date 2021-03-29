@@ -6,18 +6,16 @@ import android.preference.PreferenceManager;
 
 public class Session {
 
+    // Create new private shared preference variable
     private SharedPreferences prefs;
 
     public Session(Context context) {
+        // Set shared preference
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public void setUsername(String username) {
         prefs.edit().putString("username", username).commit();
-    }
-
-    public void resetUsername() {
-        prefs.edit().putString("username", "").commit();
     }
 
     public String getUsername() {

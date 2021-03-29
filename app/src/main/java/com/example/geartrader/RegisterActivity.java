@@ -61,14 +61,18 @@ public class RegisterActivity extends AppCompatActivity {
         String username = Username.getText().toString();
         String pass = Pass.getText().toString();
         String email = Email.getText().toString();
+
+        // Validate username
         if (username.length() < 4 || username.length() > 16) {
             Toast.makeText(RegisterActivity.this, "Incorrect Username Details", Toast.LENGTH_SHORT).show();
             return false;
         }
+        // Validate password
         if (pass.length() < 6 || pass.length() > 16)  {
             Toast.makeText(RegisterActivity.this, "Incorrect Password Details", Toast.LENGTH_SHORT).show();
             return false;
         }
+        // Validate email
         if (email.length() < 6 || email.length() > 36 || !email.contains("@")) {
             Toast.makeText(RegisterActivity.this, "Incorrect Email Address Details", Toast.LENGTH_SHORT).show();
             return false;

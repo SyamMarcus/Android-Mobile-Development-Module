@@ -104,6 +104,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // Method to check a listing exists in the DB using listing ID
     public boolean checkListingExists(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Log.e("db", "ID: " + id);
@@ -120,6 +121,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // Method to delete a listing from the DB using listing ID
     public boolean deleteListing(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -153,6 +155,7 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(CATEGORY, createListingActivity.getCategory());
         cv.put(AUTHOR, createListingActivity.getAuthor());
 
+        // Response toast messages for the insert result
         try {
             db.insert(LISTINGS_TABLE, null, cv);
             Toast.makeText(createListingActivity, "Created new Listing", Toast.LENGTH_SHORT).show();
@@ -197,7 +200,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-
+    // Method for getting all  ListingModel objects in LISTINGS_TABLE matching the author
     public List<ListingModel> getAllListingByAuthor(String author) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -263,10 +266,9 @@ public class DbHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    // Method from receiving detailed listing information from the DB using listing ID
     public ListingModel getListingById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        // Initialise new array list to return an array of ListingModel objects
 
         // Setup database query from readable database
         String query = "SELECT * FROM " + LISTINGS_TABLE + " WHERE ID = " + id;

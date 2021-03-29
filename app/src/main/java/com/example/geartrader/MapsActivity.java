@@ -21,6 +21,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Get the latitude and longitude data from the intent
         lat = getIntent().getDoubleExtra("lat", 1);
         lng = getIntent().getDoubleExtra("lng", 1);
 
@@ -36,7 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker to the specified location and move the camera
         LatLng listingLocation = new LatLng(lat, lng);
         mMap.addMarker(new MarkerOptions().position(listingLocation).title("Marker in Listing Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(listingLocation));

@@ -55,7 +55,6 @@ public class CreateListingActivity extends AppCompatActivity {
 
     private static final String TAG = "Create Listing";
 
-    final int cameraRequestCode = 300;
     final int galleryRequestCode = 100;
     final int mapsRequestCode = 200;
 
@@ -75,6 +74,7 @@ public class CreateListingActivity extends AppCompatActivity {
         locationTextView = findViewById(R.id.locationTextView);
 
 
+        // Create new button for selectCamera function
         selectCategoryButton = findViewById(R.id.selectCategoryButton);
         selectCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +82,6 @@ public class CreateListingActivity extends AppCompatActivity {
                 selectCategory();
             }
         });
-
 
         // Create new button object for the openCamera function
         openCameraButton = findViewById(R.id.openCameraButton);
@@ -113,6 +112,7 @@ public class CreateListingActivity extends AppCompatActivity {
                 );
             }
         });
+
         // Create new button object for the createListing function
         createListing = findViewById(R.id.createListing);
         createListing.setOnClickListener(new View.OnClickListener() {
@@ -120,8 +120,10 @@ public class CreateListingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG,"createListing button clicked");
                 DbHelper dbHelper = new DbHelper( CreateListingActivity.this);
+                // Validate listing information
                 if (validateCreateListing()) {
                     dbHelper.createListing(CreateListingActivity.this);
+                    // reset the view values after successfully creating a listing
                     Title.setText("");
                     Summary.setText("");
                     Price.setText("");
@@ -134,6 +136,7 @@ public class CreateListingActivity extends AppCompatActivity {
         });
     }
 
+    // Function for opening menu and selecting category
     public void selectCategory() {
         // Initializing the popup menu and giving the reference as current context
         PopupMenu popupMenu = new PopupMenu(CreateListingActivity.this, selectCategoryButton);
@@ -149,6 +152,12 @@ public class CreateListingActivity extends AppCompatActivity {
             }
         });
         popupMenu.show();
+    }
+
+    // Open Camera Activity
+    public void openCamera() {
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivity(intent);
     }
 
     // Open the Maps Current Place activity
@@ -169,7 +178,7 @@ public class CreateListingActivity extends AppCompatActivity {
         return imageInByte;
     }
 
-    // Getter functions for createListing
+    // Getter functions for createListing method
     public String getListingTitle() { return Title.getText().toString().trim(); }
     public String getSummary() { return Summary.getText().toString().trim(); }
     public String getPrice() { return Price.getText().toString().trim(); }
@@ -181,20 +190,23 @@ public class CreateListingActivity extends AppCompatActivity {
 
 
 
-    // Validate the strings for the createListing function
+    // Validate data for the createListing function
     private boolean validateCreateListing() {
         String title = Title.getText().toString().trim();
         String summary = Summary.getText().toString().trim();
         String price = Price.getText().toString();
 
+        // Validate title
         if (title.length() < 4 || title.length() > 24) {
             Toast.makeText(CreateListingActivity.this, "Incorrect Title Details", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (summary.length() < 10 || summary.length() > 150)  {
+        // Validate summary
+        if (summary.length() < 10 || summary.length() > 150) {
             Toast.makeText(CreateListingActivity.this, "Incorrect Summary Details", Toast.LENGTH_SHORT).show();
             return false;
         }
+        // Validate price
         if (price.length() <= 0 || price.length() > 10)  {
             Toast.makeText(CreateListingActivity.this, "Incorrect Price Details", Toast.LENGTH_SHORT).show();
             return false;
@@ -218,11 +230,11 @@ public class CreateListingActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    // If the result code for new activity is ok, set the listingImageView to the selected image
     @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // If the result code for new gallery activity is ok, set the listingImageView to the selected image
         if (requestCode == galleryRequestCode && resultCode == RESULT_OK && data != null) {
             Log.e(TAG,"ResultCode==galleryRequestCode");
             Uri uri = data.getData();
@@ -235,8 +247,7 @@ public class CreateListingActivity extends AppCompatActivity {
             }
         }
 
-
-
+        // If the result code for new maps is ok, set the latitude and longitude of the selected location
         if (requestCode == mapsRequestCode && data != null) {
             Log.e(TAG,"RequestCode==mapsRequestCode");
             if (data != null) {
@@ -248,11 +259,5 @@ public class CreateListingActivity extends AppCompatActivity {
                 Log.e(TAG,"Maps Activity Error");
             }
         }
-    }
-
-    
-    public void openCamera() {
-        Intent intent = new Intent(this, CameraActivity.class);
-        startActivity(intent);
     }
 }

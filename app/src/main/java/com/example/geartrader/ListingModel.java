@@ -1,7 +1,7 @@
 package com.example.geartrader;
 
 public class ListingModel {
-    // Private //
+    /* Private */
     private int id;
     private String title;
     private float price;
@@ -14,13 +14,9 @@ public class ListingModel {
     private String author;
 
 
-    // Public //
+    /* Public */
 
-    // Default Constructor
-    public ListingModel() {
-    }
-
-    // Constructor for displaying the DbHelper method "getAllListings"
+    // Constructor for displaying a simple listing model for use in ListViews
     public ListingModel(int id, String title, float price, String category) {
         this.id = id;
         this.title = title;
@@ -28,6 +24,7 @@ public class ListingModel {
         this.category = category;
     }
 
+    // Constructor for displaying a detailed listing model for use in Single Listing activities
     public ListingModel(int id, String title, float price, String summary, String date,
                         byte[] image, double lat, double lng, String category, String author) {
         this.id = id;
@@ -42,12 +39,14 @@ public class ListingModel {
         this.author = author;
     }
 
-    // Generated toString method
+    // Generated toString method used for ListViews
     @Override
     public String toString() {
         return  id + " | " + title +  " | £" + price + " | " + category;
     }
 
+
+    // Generated Getters and Setters
     public String getAuthor() {
         return author;
     }

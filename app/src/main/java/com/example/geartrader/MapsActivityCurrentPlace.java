@@ -232,6 +232,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                                         new LatLng(lastKnownLocation.getLatitude(),
                                                 lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
 
+                                /*  RETURNING LATITUDE AND LONGITUDE DATA  */
                                 LatLng local = new LatLng(lastKnownLocation.getLatitude(),
                                         lastKnownLocation.getLongitude());
                                 double[] latlng = new double[2];

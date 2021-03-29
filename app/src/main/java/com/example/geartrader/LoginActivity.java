@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG,"Login button clicked");
                 DbHelper dbHelper = new DbHelper(LoginActivity.this);
+                // If the user exists in the database, set the session context for current user
                 if (dbHelper.authenticateUser(Username.getText().toString().trim(), Pass.getText().toString().trim())) {
                     session.setUsername(Username.getText().toString().trim());
                     Toast.makeText(LoginActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();

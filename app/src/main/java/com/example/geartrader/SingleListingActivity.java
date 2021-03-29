@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SingleListingActivity extends AppCompatActivity {
-
+    // Create class-member variables
     int id;
     private TextView titleTextView;
     private TextView priceTextView;
@@ -46,6 +46,7 @@ public class SingleListingActivity extends AppCompatActivity {
         id = getIntent().getIntExtra("id", 1);
         ListingModel listingModel = dbHelper.getListingById(id);
 
+        // Setting the views using the listing model getter data
         titleTextView.setText(listingModel.getTitle());
         priceTextView.setText(String.valueOf(listingModel.getPrice()));
         dateTextView.setText(listingModel.getDate());
@@ -55,6 +56,7 @@ public class SingleListingActivity extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeByteArray(listingModel.getImage(), 0, listingModel.getImage().length);
         listingImageView.setImageBitmap(bitmap);
 
+        // Animation to fade in listing image
         animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
         listingImageView.setVisibility(View.VISIBLE);
         listingImageView.startAnimation(animFadeIn);
@@ -69,9 +71,12 @@ public class SingleListingActivity extends AppCompatActivity {
         });
 
     }
-    public void openMap(DbHelper dbHelper) {
-        ListingModel listingModel = dbHelper.getListingById(id);
 
+    // Create new intent to start Map Activity
+    public void openMap(DbHelper dbHelper) {
+        // Create local listing model object
+        ListingModel listingModel = dbHelper.getListingById(id);
+        // If the listing contains latitude and longitude data is present, open maps activity
         if (listingModel.getLat() != 0.0 && listingModel.getLng() != 0.0) {
             Intent intent = new Intent(this, MapsActivity.class);
             intent.putExtra("lat", listingModel.getLat());
