@@ -40,12 +40,12 @@ public class RegisterActivity extends AppCompatActivity {
                 DbHelper dbHelper = new DbHelper(RegisterActivity.this);
                 if (validateCreateUser()) {
                     dbHelper.createUser(RegisterActivity.this);
+                    // Reset editText boxes
+                    Username.setText("");
+                    Pass.setText("");
+                    Email.setText("");
+                    finish();
                 }
-                // Reset editText boxes
-                Username.setText("");
-                Pass.setText("");
-                Email.setText("");
-                finish();
             }
         });
     }

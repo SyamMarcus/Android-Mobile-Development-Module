@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         session = new Session(this);
 
         // Create new button object for the openRegister function
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String description = listingsList.getItemAtPosition(position).toString();
-                int ID = Integer.parseInt(String.valueOf(description.charAt(0)));
+                int ID = Integer.parseInt(description.substring(0, description.indexOf(" ")));
                 Log.d("MainActivity", "Clicked Item: " + id + " at position:" + position);
                 if(dbHelper.checkListingExists(ID)) {
                     Intent intent = new Intent(view.getContext(), SingleListingActivity.class);

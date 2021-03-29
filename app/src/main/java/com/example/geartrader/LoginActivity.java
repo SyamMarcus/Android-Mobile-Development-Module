@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button openRegisterButton;
     Session session;
 
-    private static final String TAG = "3";
+    private static final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

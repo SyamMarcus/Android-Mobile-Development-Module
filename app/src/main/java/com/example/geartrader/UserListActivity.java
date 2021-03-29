@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,6 +23,7 @@ public class UserListActivity extends AppCompatActivity {
     private Button returnButton;
     private ListView listingsList;
     private Session session;
+    Animation animFadeIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class UserListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String description = listingsList.getItemAtPosition(position).toString();
-                int ID = Integer.parseInt(String.valueOf(description.charAt(0)));
+                int ID = Integer.parseInt(description.substring(0, description.indexOf(" ")));
                 Log.d("UserListActivity", "Clicked Item: " + id + " at position:" + position);
                 if(dbHelper.checkListingExists(ID)) {
                     Intent intent = new Intent(view.getContext(), PersonalListingActivity.class);
@@ -89,5 +92,8 @@ public class UserListActivity extends AppCompatActivity {
         ArrayAdapter listingsArrayAdapter = new ArrayAdapter<ListingModel>(UserListActivity.this, android.R.layout.simple_list_item_1,
                 dbHelper.getAllListingByAuthor(user));
         listingsList.setAdapter(listingsArrayAdapter);
+        animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+        listingsList.setVisibility(View.VISIBLE);
+        listingsList.startAnimation(animFadeIn);
     }
 }

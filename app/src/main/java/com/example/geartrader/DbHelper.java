@@ -106,6 +106,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public boolean checkListingExists(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
+        Log.e("db", "ID: " + id);
         String query = "SELECT * FROM " + LISTINGS_TABLE + " WHERE ID = " + id;
 
         Cursor cursor = db.rawQuery(query, null);
