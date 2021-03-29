@@ -7,6 +7,7 @@
     android:background="@color/quantum_grey200"
     tools:context="com.example.geartrader.MainActivity">
 
+
     <Button
         android:id="@+id/selectCategoryButton"
         android:layout_width="wrap_content"
@@ -14,37 +15,44 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="110dp"
         android:text="@string/sort_by_category"
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/openRegisterButton"
+        android:id="@+id/openLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:textAllCaps="false"
-        android:text="@string/create_new_account" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:text="Login"
+        android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/displayListingsButton"
+        android:id="@+id/userListingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/openRegisterButton"
-        android:layout_centerHorizontal="true"
-        android:textAllCaps="false"
-        android:text="@string/refresh_listings" />
-
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="18dp"
+        android:text="View Your Listings"
+        android:textAllCaps="false" />
     <ListView
         android:id="@+id/listingListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/openRegisterButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp" />
+        android:layout_marginTop="180dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/openListingButton"
@@ -53,12 +61,28 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="110dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:clickable="true"
         android:contentDescription="Used to open listing activity to create a new listing"
         android:focusable="true"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/displayListingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_toStartOf="@+id/openListingButton"
+        android:layout_toLeftOf="@+id/openListingButton"
+        android:clickable="true"
+        android:contentDescription="Used to refresh the listing list"
+        android:focusable="true"
+        app:srcCompat="@android:drawable/stat_notify_sync" />
+
 
 </RelativeLayout>

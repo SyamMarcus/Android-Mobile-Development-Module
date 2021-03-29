@@ -16,7 +16,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="18dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="25dp"
         android:text="Return to Main Page"
         android:textAllCaps="false" />
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/openRegisterButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="140dp" />
+        android:layout_marginTop="100dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/displayListingsButton"

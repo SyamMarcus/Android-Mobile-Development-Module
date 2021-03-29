@@ -167,6 +167,7 @@
         android:layout_height="200dp"
         android:layout_below="@id/selectImageButton"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:contentDescription="Image for the user to Upload with the listing"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
 
