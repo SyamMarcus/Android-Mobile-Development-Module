@@ -240,10 +240,6 @@ public class CameraActivity extends AppCompatActivity {
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
-                    // ADDED FINISH METHOD //
-                    Intent intent= new Intent();
-                    intent.putExtra("image", someBytes);
-                    setResult(300, intent);
                     createCameraPreview();
                 }
             };
@@ -315,6 +311,7 @@ public class CameraActivity extends AppCompatActivity {
             // Add permission for camera and let user grant the permission
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CAMERA_PERMISSION);
+                Log.e(TAG, "Permission Granted For Writing");
                 return;
             }
             manager.openCamera(cameraId, stateCallback, null);

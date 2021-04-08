@@ -17,7 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="93dp"
         android:layout_marginLeft="93dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="25dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
@@ -113,25 +113,24 @@
         android:id="@+id/selectCategoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/priceEditTextView"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="395dp"
         android:layout_marginLeft="395dp"
-        android:layout_marginTop="-233dp"
+        android:layout_marginTop="25dp"
         android:text="@string/select_category"
         android:textAllCaps="false" />
-
 
 
     <Button
         android:id="@+id/openMapsButton"
         android:layout_width="148dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/priceEditTextView"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="-233dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:text="@string/select_location"
@@ -139,13 +138,13 @@
 
     <Button
         android:id="@+id/openCameraButton"
-        android:layout_width="wrap_content"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/categoryTextView"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="405dp"
-        android:layout_marginLeft="405dp"
+        android:layout_marginStart="395dp"
+        android:layout_marginLeft="395dp"
         android:layout_marginTop="18dp"
         android:text="Open Camera"
         android:textAllCaps="false" />
@@ -180,17 +179,17 @@
 
     <Button
         android:id="@+id/selectImageButton"
-        android:layout_width="wrap_content"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/locationTextView"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
         android:layout_marginTop="18dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/select_image" />
+        android:text="@string/select_image"
+        android:textAllCaps="false" />
 
     <ImageView
         android:id="@+id/listingImageView"

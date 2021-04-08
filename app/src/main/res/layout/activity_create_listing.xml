@@ -149,38 +149,40 @@
 
     <Button
         android:id="@+id/selectImageButton"
-        android:layout_width="wrap_content"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/priceEditTextView"
+        android:layout_below="@+id/locationTextView"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="99dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/select_image" />
+        android:text="@string/select_image"
+        android:textAllCaps="false" />
 
     <ImageView
         android:id="@+id/listingImageView"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_above="@+id/createListing"
         android:layout_below="@id/selectImageButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:contentDescription="Image for the user to Upload with the listing"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
 
     <Button
         android:id="@+id/openCameraButton"
-        android:layout_width="wrap_content"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/listingImageView"
         android:layout_below="@+id/categoryTextView"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="47dp"
-        android:layout_marginLeft="47dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="18dp"
         android:layout_marginBottom="10dp"
         android:text="Open Camera"

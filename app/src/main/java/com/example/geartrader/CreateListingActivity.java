@@ -234,18 +234,7 @@ public class CreateListingActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         }
-        if (requestCode == cameraRequestCode && data != null) {
-            Log.e(TAG, "RequestCode==cameraRequestCode");
-            if ( data.getByteArrayExtra("image").length > 0) {
-                byte[] image = data.getByteArrayExtra("image");
-                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-                listingImageView.setImageBitmap(bitmap);
-            } else {
-                Log.e(TAG,"Image Byte Array == 0");
-            }
-        } else {
-            Log.e(TAG,"cameraRequest data == null");
-        }
+
 
 
         if (requestCode == mapsRequestCode && data != null) {
@@ -261,11 +250,9 @@ public class CreateListingActivity extends AppCompatActivity {
         }
     }
 
-
-    // PERSONAL NOTE!!! THE PREVIOUS GIT COMMIT SETTING THE IMAGEVIEW WITH THE FILE PATH
-    // MAY WORK GIVEN AN SSD FOR EXTERNAL STORAGE WHICH MAY SHOW THE IMAGE IN GALLERY??
+    
     public void openCamera() {
         Intent intent = new Intent(this, CameraActivity.class);
-        startActivityForResult(intent, cameraRequestCode);
+        startActivity(intent);
     }
 }

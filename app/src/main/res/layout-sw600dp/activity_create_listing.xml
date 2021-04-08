@@ -8,15 +8,23 @@
     tools:context="com.example.geartrader.MainActivity">
 
 
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/enter_listing_title"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/titleEditTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleTextView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="93dp"
-        android:layout_marginLeft="93dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
         android:autofillHints=""
         android:ems="10"
@@ -25,67 +33,52 @@
         android:inputType="textCapWords"
         android:maxLength="50"
         android:maxLines="1"
-        android:textSize="15sp" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/summaryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleEditTextView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="127dp"
-        android:layout_marginLeft="127dp"
-        android:layout_marginTop="2dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
         android:gravity="center"
         android:text="@string/enter_summary"
-        android:textSize="15sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/summaryEditTextView"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_width="450dp"
+        android:layout_height="150dp"
         android:layout_below="@id/summaryTextView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="0dp"
-        android:autofillHints=""
+        android:layout_centerHorizontal="true"
         android:ems="8"
-        android:gravity="left"
-        android:inputType="textCapSentences|textMultiLine"
-        android:maxLength="300"
-        android:maxLines="4"
+        android:maxLines ="4"
+        android:maxLength ="300"
         android:scrollHorizontally="false"
-        android:textSize="14sp" />
+        android:gravity="left"
+        android:textSize="20sp"
+        android:inputType="textCapSentences|textMultiLine"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/priceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/summaryEditTextView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="129dp"
-        android:layout_marginLeft="129dp"
-        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="@string/enter_price"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="@string/enter_price" />
 
     <EditText
         android:id="@+id/priceEditTextView"
         android:layout_width="109dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/priceTextView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="126dp"
-        android:layout_marginLeft="126dp"
-        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
@@ -93,21 +86,7 @@
         android:inputType="numberDecimal"
         android:maxLength="5"
         android:maxLines="1"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="@string/enter_listing_title"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textSize="22sp" />
 
     <Button
         android:id="@+id/selectCategoryButton"
@@ -116,38 +95,14 @@
         android:layout_below="@id/priceEditTextView"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="395dp"
-        android:layout_marginLeft="395dp"
-        android:layout_marginTop="-233dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_toStartOf="@+id/priceEditTextView"
+        android:layout_toLeftOf="@+id/priceEditTextView"
         android:text="@string/select_category"
+        android:textSize="20sp"
         android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/openMapsButton"
-        android:layout_width="148dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/priceEditTextView"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="-233dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:text="@string/select_location"
-        android:textAllCaps="false" />
-
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="148dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/selectCategoryButton"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center"
-        android:text="location"
-        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/categoryTextView"
@@ -156,60 +111,98 @@
         android:layout_below="@+id/selectCategoryButton"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="395dp"
-        android:layout_marginLeft="395dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+
+        android:layout_toStartOf="@+id/priceEditTextView"
+        android:layout_toLeftOf="@+id/priceEditTextView"
         android:gravity="center"
         android:text="category"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectCategoryButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_toEndOf="@+id/priceEditTextView"
+        android:layout_toRightOf="@+id/priceEditTextView"
+        android:gravity="center"
+        android:text="location"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/openMapsButton"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/priceEditTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_toEndOf="@+id/priceEditTextView"
+        android:layout_toRightOf="@+id/priceEditTextView"
+        android:text="@string/select_location"
+        android:textSize="20sp"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/selectImageButton"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/locationTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="41dp"
+        android:layout_toEndOf="@+id/priceEditTextView"
+        android:layout_toRightOf="@+id/priceEditTextView"
+        android:text="@string/select_image"
+        android:textAllCaps="false"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/listingImageView"
-        android:layout_width="200dp"
+        android:layout_width="350dp"
         android:layout_height="200dp"
         android:layout_above="@+id/createListing"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_below="@id/selectImageButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="299dp"
-        android:layout_marginLeft="299dp"
-        android:layout_marginEnd="301dp"
-        android:layout_marginRight="301dp"
-        android:layout_marginBottom="39dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
         android:contentDescription="Image for the user to Upload with the listing"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
 
     <Button
-        android:id="@+id/selectImageButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/openCameraButton"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/categoryTextView"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="327dp"
-        android:layout_marginLeft="327dp"
-        android:layout_marginEnd="327dp"
-        android:layout_marginRight="327dp"
-        android:layout_marginBottom="337dp"
-        android:text="@string/select_image" />
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_toStartOf="@+id/priceEditTextView"
+        android:layout_toLeftOf="@+id/priceEditTextView"
+        android:text="Open Camera"
+        android:textAllCaps="false"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/createListing"
-        android:layout_width="281dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="263dp"
-        android:layout_marginLeft="263dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/confirm" />
+        android:layout_marginBottom="14dp"
+        android:text="@string/confirm"
+        android:textSize="22sp" />
 
 </RelativeLayout>
