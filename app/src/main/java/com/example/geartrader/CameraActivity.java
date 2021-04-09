@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
@@ -200,7 +201,10 @@ public class CameraActivity extends AppCompatActivity {
             // Orientation
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
-            final File file = new File(Environment.getExternalStorageDirectory()+"/pic.jpg");
+            /* Set new ContextWrapper of file directory */
+            ContextWrapper cw = new ContextWrapper(getApplicationContext());
+            File directory = cw.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            final File file = new File(directory, "image" + ".jpg");
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
