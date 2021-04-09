@@ -35,6 +35,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.BreakIterator;
 
 public class CreateListingActivity extends AppCompatActivity {
     // Create class-member variables
@@ -121,7 +122,9 @@ public class CreateListingActivity extends AppCompatActivity {
                 Log.d(TAG,"createListing button clicked");
                 DbHelper dbHelper = new DbHelper( CreateListingActivity.this);
                 // Validate listing information
-                if (validateCreateListing()) {
+                if (validateCreateListing(Title.getText().toString().trim(),
+                        Summary.getText().toString().trim(),
+                        Price.getText().toString())) {
                     dbHelper.createListing(CreateListingActivity.this);
                     // reset the view values after successfully creating a listing
                     Title.setText("");
@@ -191,10 +194,7 @@ public class CreateListingActivity extends AppCompatActivity {
 
 
     // Validate data for the createListing function
-    private boolean validateCreateListing() {
-        String title = Title.getText().toString().trim();
-        String summary = Summary.getText().toString().trim();
-        String price = Price.getText().toString();
+    public boolean validateCreateListing(String title, String summary, String price) {
 
         // Validate title
         if (title.length() < 4 || title.length() > 24) {
