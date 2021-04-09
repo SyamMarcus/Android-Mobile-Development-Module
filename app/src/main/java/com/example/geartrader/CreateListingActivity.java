@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Camera;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
@@ -263,14 +264,22 @@ public class CreateListingActivity extends AppCompatActivity {
 
         // If the result code for new camera activity is ok, read and set the file in the directory to the image view
         if (requestCode == cameraRequestCode && data != null) {
+            // Decode file and create a bitmap of the image
             String photoPath = data.getStringExtra("dir");
             Log.e(TAG,"Tried to open: " + photoPath);
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 8;
-            final Bitmap b = BitmapFactory.decodeFile(photoPath, options);
-            listingImageView.setImageBitmap(b);
+            Bitmap bitmap = BitmapFactory.decodeFile(photoPath, options);
+
+            // rotate the image
+            Matrix matrix = new Matrix();
+            matrix.postRotate(90);
+            Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+
+            listingImageView.setImageBitmap(rotatedBitmap);
         } else {
             Log.e(TAG,"cameraRequest data == null");
         }
+
     }
 }

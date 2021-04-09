@@ -48,7 +48,7 @@ public class SingleListingActivity extends AppCompatActivity {
 
         // Setting the views using the listing model getter data
         titleTextView.setText(listingModel.getTitle());
-        priceTextView.setText(String.valueOf(listingModel.getPrice()));
+        priceTextView.setText("£" + String.valueOf(listingModel.getPrice()));
         dateTextView.setText(listingModel.getDate());
         authorTextView.setText(listingModel.getAuthor());
         categoryTextView.setText(listingModel.getCategory());
