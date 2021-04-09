@@ -1,3 +1,10 @@
+/*
+ MOST OF THIS CODE CAME FROM 6002CEM-2021JANMAY / Teaching-projects / Week 7 Sensors and hardware / CameraAPIdemo
+ from this GitHub https://github.coventry.ac.uk/6002CEM-2021JANMAY/Teaching-projects.git
+
+ The custom code which has been added is marked between the "// Custom Code //" comments
+ */
+
 package com.example.geartrader;
 
 import androidx.annotation.RequiresApi;
@@ -203,12 +210,14 @@ public class CameraActivity extends AppCompatActivity {
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
 
-            /* Set new ContextWrapper of file directory and set the dir variable for intent result */
+            // Custom Code //
+            // Set new ContextWrapper of file directory and set the dir variable for intent result
             ContextWrapper cw = new ContextWrapper(getApplicationContext());
             File directory = cw.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             dir = directory.toString();
             Log.e("dir", dir);
             final File file = new File(directory, "image" + ".jpg");
+            // Custom Code //
 
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
@@ -249,11 +258,15 @@ public class CameraActivity extends AppCompatActivity {
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
-                    /* Added intent finish method with the location of the saved image */
+
+                    // Custom Code //
+                    // Added intent finish method with the location of the saved image
                     Intent intent=new Intent();
                     intent.putExtra("dir" , dir + "/image" + ".jpg");
                     setResult(300, intent);
                     finish();
+                    // Custom Code //
+
                 }
             };
             cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {

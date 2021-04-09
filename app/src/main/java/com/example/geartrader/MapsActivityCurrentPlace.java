@@ -1,3 +1,8 @@
+/*
+ THIS CODE COMES FROM THE GOOGLE MAPS CURRENT PLACE DETAILS ON MAPS GITHUB
+ from this GitHub https://github.com/googlemaps/android-samples/tree/main/tutorials/java/CurrentPlaceDetailsOnMap
+ */
+
 package com.example.geartrader;
 
 
