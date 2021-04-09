@@ -58,6 +58,7 @@ public class CreateListingActivity extends AppCompatActivity {
 
     final int galleryRequestCode = 100;
     final int mapsRequestCode = 200;
+    final int cameraRequestCode = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,10 +158,10 @@ public class CreateListingActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
-    // Open Camera Activity
+    // Open Camera Activity for result
     public void openCamera() {
         Intent intent = new Intent(this, CameraActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, cameraRequestCode);
     }
 
     // Open the Maps Current Place activity
@@ -249,15 +250,27 @@ public class CreateListingActivity extends AppCompatActivity {
 
         // If the result code for new maps is ok, set the latitude and longitude of the selected location
         if (requestCode == mapsRequestCode && data != null) {
-            Log.e(TAG,"RequestCode==mapsRequestCode");
+            Log.e(TAG, "RequestCode==mapsRequestCode");
             if (data != null) {
                 double[] latlng = data.getDoubleArrayExtra("latlng");
                 Lat = latlng[0];
                 Lng = latlng[1];
                 locationTextView.setText("Location Set");
             } else {
-                Log.e(TAG,"Maps Activity Error");
+                Log.e(TAG, "Maps Activity Error");
             }
+        }
+
+        // If the result code for new camera activity is ok, read and set the file in the directory to the image view
+        if (requestCode == cameraRequestCode && data != null) {
+            String photoPath = data.getStringExtra("dir");
+            Log.e(TAG,"Tried to open: " + photoPath);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 8;
+            final Bitmap b = BitmapFactory.decodeFile(photoPath, options);
+            listingImageView.setImageBitmap(b);
+        } else {
+            Log.e(TAG,"cameraRequest data == null");
         }
     }
 }

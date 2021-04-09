@@ -67,6 +67,7 @@ public class CameraActivity extends AppCompatActivity {
     protected CaptureRequest.Builder captureRequestBuilder;
     private Size imageDimension;
     private ImageReader imageReader;
+    private String dir;
     private File file;
     private byte[] someBytes;
     private static final int REQUEST_CAMERA_PERMISSION = 200;
@@ -201,10 +202,14 @@ public class CameraActivity extends AppCompatActivity {
             // Orientation
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
-            /* Set new ContextWrapper of file directory */
+
+            /* Set new ContextWrapper of file directory and set the dir variable for intent result */
             ContextWrapper cw = new ContextWrapper(getApplicationContext());
             File directory = cw.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            dir = directory.toString();
+            Log.e("dir", dir);
             final File file = new File(directory, "image" + ".jpg");
+
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
@@ -244,7 +249,11 @@ public class CameraActivity extends AppCompatActivity {
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
-                    createCameraPreview();
+                    /* Added intent finish method with the location of the saved image */
+                    Intent intent=new Intent();
+                    intent.putExtra("dir" , dir + "/image" + ".jpg");
+                    setResult(300, intent);
+                    finish();
                 }
             };
             cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
