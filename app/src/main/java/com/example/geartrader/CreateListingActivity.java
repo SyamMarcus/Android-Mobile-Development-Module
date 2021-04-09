@@ -11,13 +11,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,15 +25,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.BreakIterator;
 
 public class CreateListingActivity extends AppCompatActivity {
     // Create class-member variables
@@ -53,7 +44,6 @@ public class CreateListingActivity extends AppCompatActivity {
     private TextView categoryTextView;
     private TextView locationTextView;
     private Session session;
-
 
     private static final String TAG = "Create Listing";
 
@@ -144,6 +134,7 @@ public class CreateListingActivity extends AppCompatActivity {
     // Function for opening menu and selecting category
     public void selectCategory() {
         // Initializing the popup menu and giving the reference as current context
+        Log.d(TAG, "selectCategory");
         PopupMenu popupMenu = new PopupMenu(CreateListingActivity.this, selectCategoryButton);
         popupMenu.getMenuInflater().inflate(R.menu.category_menu, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -161,18 +152,21 @@ public class CreateListingActivity extends AppCompatActivity {
 
     // Open Camera Activity for result
     public void openCamera() {
+        Log.d(TAG, "openCamera");
         Intent intent = new Intent(this, CameraActivity.class);
         startActivityForResult(intent, cameraRequestCode);
     }
 
     // Open the Maps Current Place activity
     public void openMaps() {
+        Log.d(TAG, "openMaps");
         Intent intent = new Intent(this,  MapsActivityCurrentPlace.class);
         startActivityForResult(intent, mapsRequestCode);
     }
 
     // Convert ImageView to byte array
     public byte[] imageViewToByte (ImageView imageView) {
+        Log.d(TAG, "imageViewToByte");
         if (imageView == null) {
             return new byte[0];
         }
@@ -193,24 +187,22 @@ public class CreateListingActivity extends AppCompatActivity {
     public String getCategory() { return Category; }
     public String getAuthor() { return session.getUsername(); }
 
-
-
     // Validate data for the createListing function
     public boolean validateCreateListing(String title, String summary, String price) {
-
+        Log.d(TAG, "validateCreateListing");
         // Validate title
         if (title.length() < 4 || title.length() > 24) {
-            Toast.makeText(CreateListingActivity.this, "Incorrect Title Details", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(CreateListingActivity.this, "Incorrect Title Details", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Validate summary
         if (summary.length() < 10 || summary.length() > 150) {
-            Toast.makeText(CreateListingActivity.this, "Incorrect Summary Details", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(CreateListingActivity.this, "Incorrect Summary Details", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Validate price
         if (price.length() <= 0 || price.length() > 10)  {
-            Toast.makeText(CreateListingActivity.this, "Incorrect Price Details", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(CreateListingActivity.this, "Incorrect Price Details", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -220,6 +212,7 @@ public class CreateListingActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == galleryRequestCode) {
+            Log.d(TAG, "galleryRequestCode: permissions");
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
@@ -238,7 +231,7 @@ public class CreateListingActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         // If the result code for new gallery activity is ok, set the listingImageView to the selected image
         if (requestCode == galleryRequestCode && resultCode == RESULT_OK && data != null) {
-            Log.e(TAG,"ResultCode==galleryRequestCode");
+            Log.d(TAG, "galleryRequestCode: resultCode");
             Uri uri = data.getData();
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -247,23 +240,24 @@ public class CreateListingActivity extends AppCompatActivity {
             } catch (FileNotFoundException error) {
                 error.printStackTrace();
             }
+        } else {
+            Log.e(TAG,"galleryRequestCode data == null");
         }
 
         // If the result code for new maps is ok, set the latitude and longitude of the selected location
         if (requestCode == mapsRequestCode && data != null) {
-            Log.e(TAG, "RequestCode==mapsRequestCode");
-            if (data != null) {
-                double[] latlng = data.getDoubleArrayExtra("latlng");
-                Lat = latlng[0];
-                Lng = latlng[1];
-                locationTextView.setText("Location Set");
-            } else {
-                Log.e(TAG, "Maps Activity Error");
-            }
+            Log.d(TAG, "mapsRequestCode: resultCode");
+            double[] latlng = data.getDoubleArrayExtra("latlng");
+            Lat = latlng[0];
+            Lng = latlng[1];
+            locationTextView.setText("Location Set");
+        } else {
+            Log.e(TAG,"mapsRequest data == null");
         }
 
         // If the result code for new camera activity is ok, read and set the file in the directory to the image view
         if (requestCode == cameraRequestCode && data != null) {
+            Log.d(TAG, "cameraRequestCode: resultCode");
             // Decode file and create a bitmap of the image
             String photoPath = data.getStringExtra("dir");
             Log.e(TAG,"Tried to open: " + photoPath);

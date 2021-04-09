@@ -86,7 +86,7 @@
         android:id="@+id/priceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:gravity="left"
         android:text="PRICE"
         android:textAllCaps="false"

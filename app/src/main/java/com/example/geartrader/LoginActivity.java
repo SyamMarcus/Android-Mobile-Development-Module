@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button openRegisterButton;
     Session session;
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "Login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 // If the user exists in the database, set the session context for current user
                 if (dbHelper.authenticateUser(Username.getText().toString().trim(), Pass.getText().toString().trim())) {
                     session.setUsername(Username.getText().toString().trim());
+                    Log.d(TAG,"session changed");
                     Toast.makeText(LoginActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Create new intent to start Register Activity
     public void openRegister() {
+        Log.e(TAG,"openRegister");
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }

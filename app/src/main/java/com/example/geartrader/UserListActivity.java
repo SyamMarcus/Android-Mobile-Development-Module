@@ -25,6 +25,8 @@ public class UserListActivity extends AppCompatActivity {
     private Session session;
     Animation animFadeIn;
 
+    private static final String TAG = "User List";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class UserListActivity extends AppCompatActivity {
                     intent.putExtra("id", ID);
                     startActivity(intent);
                 } else {
+                    Log.e(TAG,"clicked null listing");
                     Toast.makeText(UserListActivity.this, "Listing no longer exists, please refresh", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -85,12 +88,14 @@ public class UserListActivity extends AppCompatActivity {
 
     // Create new intent to start CreateListing Activity
     public void openCreateListing() {
+        Log.d(TAG,"open create listing");
         Intent intent = new Intent(this, CreateListingActivity.class);
         startActivity(intent);
     }
 
     // Function to set the ListView using ListingModel data from the database
     public void displayAllListings(DbHelper dbHelper) {
+        Log.d(TAG,"display all listings");
         String user = session.getUsername();
         ArrayAdapter listingsArrayAdapter = new ArrayAdapter<ListingModel>(UserListActivity.this, android.R.layout.simple_list_item_1,
                 dbHelper.getAllListingByAuthor(user));

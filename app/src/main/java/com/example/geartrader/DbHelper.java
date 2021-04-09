@@ -40,7 +40,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_LISTINGS_TABLE = "CREATE TABLE "+LISTINGS_TABLE+ " " + "("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+TITLE+" VARCHAR(255) NOT NULL, "+PRICE+" REAL NOT NULL, "+SUMMARY+" VARCHAR(225) NOT NULL,"+DATE_CREATED+" DATETIME DEFAULT CURRENT_TIMESTAMP, "+IMAGE+" BLOB, "+LAT+" REAL, "+LNG+" REAL,"+CATEGORY+" VARCHAR(225) NOT NULL, "+ACTIVE+" BOOL, "+AUTHOR+" VARCHAR(225));";
 
     private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+ USERS_TABLE;
-    private static final String TAG = "db";
+    private static final String TAG = "DbHelper";
 
     public DbHelper(@Nullable Context context) {
         super(context, "GearTrader.db", null, 1);
@@ -80,6 +80,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.insert(USERS_TABLE, null, cv);
             Toast.makeText(registerActivity, "Created new user", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
+            Log.e(TAG,"Failed to create new user");
             Toast.makeText(registerActivity, "Failed to create new user" , Toast.LENGTH_SHORT).show();
         }
 
@@ -160,6 +161,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.insert(LISTINGS_TABLE, null, cv);
             Toast.makeText(createListingActivity, "Created new Listing", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
+            Log.e(TAG,"Failed to create new listing");
             Toast.makeText(createListingActivity, "Failed to create new Listing" , Toast.LENGTH_SHORT).show();
         }
 
@@ -192,7 +194,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
             } while (cursor.moveToNext());
         } else {
-            //Failure to move to find first entry
+            Log.e(TAG,"Failed to find entry");
         }
 
         cursor.close();
@@ -226,7 +228,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
             } while (cursor.moveToNext());
         } else {
-            //Failure to move to find first entry
+            Log.e(TAG,"Failed to find entry");
         }
 
         cursor.close();

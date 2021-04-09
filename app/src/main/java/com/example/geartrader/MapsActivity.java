@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    // Creating Google Map object and initialise doubles for latitude and longitude
     private GoogleMap mMap;
     Double lat;
     Double lng;

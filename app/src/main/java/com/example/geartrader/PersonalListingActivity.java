@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -29,6 +30,8 @@ public class PersonalListingActivity extends AppCompatActivity {
     private Button openMapButton;
     private ImageView listingImageView;
     Animation animFadeIn;
+
+    private static final String TAG = "Personal Listing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +100,7 @@ public class PersonalListingActivity extends AppCompatActivity {
                     // If the user confirms deletion, call DB function to delete by ID
                     public void onClick(DialogInterface dialog, int which) {
                         dbHelper.deleteListing(id);
+                        Log.d(TAG,"delete listing confirmed");
                         finish();
                     }
                 });
@@ -104,6 +108,7 @@ public class PersonalListingActivity extends AppCompatActivity {
             @Override
             // If the user cancels deletion, return
             public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG,"delete listing canceled");
                 return;
             }
         });
@@ -114,6 +119,7 @@ public class PersonalListingActivity extends AppCompatActivity {
 
     // Create new intent to start Map Activity
     public void openMap(DbHelper dbHelper) {
+        Log.d(TAG,"open Map");
         // Create local listing model object
         ListingModel listingModel = dbHelper.getListingById(id);
         // If the listing contains latitude and longitude data is present, open maps activity
@@ -123,6 +129,7 @@ public class PersonalListingActivity extends AppCompatActivity {
             intent.putExtra("lng", listingModel.getLng());
             startActivity(intent);
         } else {
+            Log.d(TAG,"open Map: no location");
             Toast.makeText(this, "This Listing does not include a location", Toast.LENGTH_SHORT).show();
         }
     }

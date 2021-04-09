@@ -16,9 +16,9 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
     // Create class-member variables
     EditText Username, Pass, Email;
-    private Button openMainButton;
     private Button createUser;
-    private static final String TAG = "3";
+
+    private static final String TAG = "Register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,11 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG,"createUser button clicked");
                 DbHelper dbHelper = new DbHelper(RegisterActivity.this);
-                if (validateCreateUser()) {
+                if (validateCreateUser(Username.getText().toString(),
+                        Pass.getText().toString(),
+                        Email.getText().toString())) {
                     dbHelper.createUser(RegisterActivity.this);
+                    Log.d(TAG,"user created");
                     // Reset editText boxes
                     Username.setText("");
                     Pass.setText("");
@@ -57,24 +60,22 @@ public class RegisterActivity extends AppCompatActivity {
     public String getEmail() { return Email.getText().toString(); }
 
     // Validate the strings for the createUser function
-    public boolean validateCreateUser() {
-        String username = Username.getText().toString();
-        String pass = Pass.getText().toString();
-        String email = Email.getText().toString();
+    public boolean validateCreateUser(String username, String pass, String email) {
+        Log.d(TAG,"validate create user");
 
         // Validate username
         if (username.length() < 4 || username.length() > 16) {
-            Toast.makeText(RegisterActivity.this, "Incorrect Username Details", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(RegisterActivity.this, "Incorrect Username Details", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Validate password
         if (pass.length() < 6 || pass.length() > 16)  {
-            Toast.makeText(RegisterActivity.this, "Incorrect Password Details", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(RegisterActivity.this, "Incorrect Password Details", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Validate email
         if (email.length() < 6 || email.length() > 36 || !email.contains("@")) {
-            Toast.makeText(RegisterActivity.this, "Incorrect Email Address Details", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(RegisterActivity.this, "Incorrect Email Address Details", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

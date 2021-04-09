@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,6 +27,8 @@ public class SingleListingActivity extends AppCompatActivity {
     private Button openMapButton;
     private ImageView listingImageView;
     Animation animFadeIn;
+
+    private static final String TAG = "Single Listing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class SingleListingActivity extends AppCompatActivity {
 
     // Create new intent to start Map Activity
     public void openMap(DbHelper dbHelper) {
+        Log.d(TAG,"open map");
         // Create local listing model object
         ListingModel listingModel = dbHelper.getListingById(id);
         // If the listing contains latitude and longitude data is present, open maps activity
@@ -83,6 +87,7 @@ public class SingleListingActivity extends AppCompatActivity {
             intent.putExtra("lng", listingModel.getLng());
             startActivity(intent);
         } else {
+            Log.d(TAG,"open Map: no location");
             Toast.makeText(this, "This Listing does not include a location", Toast.LENGTH_SHORT).show();
         }
     }

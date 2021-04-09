@@ -1,9 +1,13 @@
 package com.example.geartrader;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
@@ -12,8 +16,15 @@ import static org.junit.Assert.*;
 public class CreateListingActivityTest {
 
 
-    @Mock
-    CreateListingActivity createListingActivity;
+
+    private CreateListingActivity createListingActivity;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        createListingActivity = new CreateListingActivity();
+        Context context;
+    }
 
     // String lengths are valid for validation
     public String goodTitle = "GoodTitle".trim();
@@ -24,7 +35,7 @@ public class CreateListingActivityTest {
     public String badTitle = "bad".trim();
     // This summary is too small for validation
     public String badSummary = "bad sum".trim();
-    // This summary is too long for validation
+    // This price is too long for validation
     public String badPrice = "999999999.00".trim();
 
     @Test
@@ -48,4 +59,5 @@ public class CreateListingActivityTest {
         boolean result = createListingActivity.validateCreateListing(goodTitle, goodSummary, badPrice);
         assertFalse(result);
     }
+
 }
