@@ -191,12 +191,12 @@ public class CreateListingActivity extends AppCompatActivity {
     public boolean validateCreateListing(String title, String summary, String price) {
         Log.d(TAG, "validateCreateListing");
         // Validate title
-        if (title.length() < 4 || title.length() > 24) {
+        if (title.length() < 4 || title.length() > 30) {
             //Toast.makeText(CreateListingActivity.this, "Incorrect Title Details", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Validate summary
-        if (summary.length() < 10 || summary.length() > 150) {
+        if (summary.length() < 10 || summary.length() > 350) {
             //Toast.makeText(CreateListingActivity.this, "Incorrect Summary Details", Toast.LENGTH_SHORT).show();
             return false;
         }
