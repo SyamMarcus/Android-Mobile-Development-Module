@@ -16,35 +16,61 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
+        android:textSize="24dp"
         android:layout_marginTop="130dp"
         android:text="@string/sort_by_category"
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/openRegisterButton"
+        android:id="@+id/openLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:textAllCaps="false"
-        android:text="@string/create_new_account" />
-
-    <Button
-        android:id="@+id/displayListingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/openRegisterButton"
-        android:layout_centerHorizontal="true"
-        android:textAllCaps="false"
-        android:text="@string/refresh_listings" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="17dp"
+        android:textSize="24dp"
+        android:text="Login"
+        android:textAllCaps="false" />
 
     <ListView
         android:id="@+id/listingListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/openRegisterButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp" />
+        android:layout_marginTop="250dp" />
+
+    <Button
+        android:id="@+id/userListingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="18dp"
+        android:textSize="24dp"
+        android:layout_marginTop="20dp"
+        android:text="View Your Listings"
+        android:textAllCaps="false" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/displayListingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginRight="112dp"
+        android:clickable="true"
+        android:contentDescription="Used to refresh the listing list"
+        android:focusable="true"
+        app:srcCompat="@android:drawable/stat_notify_sync" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/openListingButton"
